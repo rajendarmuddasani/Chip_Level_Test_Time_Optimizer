@@ -5,13 +5,14 @@ This module implements a simple feedforward neural network for binary classifica
 of chips into PASS/FAIL categories to determine which tests can be safely skipped.
 """
 
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from typing import Tuple
 
 
-class DTFSClassifier(nn.Module):
+class ChipTestClassifier(nn.Module):
     """
     Binary classifier for test skip prediction
     
@@ -27,14 +28,14 @@ class DTFSClassifier(nn.Module):
         dropout: Dropout probability for regularization
     
     Example:
-        >>> model = DTFSClassifier(input_size=202, hidden_size=4, dropout=0.5)
+        >>> model = ChipTestClassifier(input_size=202, hidden_size=4, dropout=0.5)
         >>> x = torch.randn(32, 202)  # Batch of 32 chips
         >>> logits = model(x)
         >>> probs = model.predict_proba(x)
     """
     
     def __init__(self, input_size: int = 202, hidden_size: int = 4, dropout: float = 0.5):
-        super(DTFSClassifier, self).__init__()
+        super(ChipTestClassifier, self).__init__()
         
         self.input_size = input_size
         self.hidden_size = hidden_size
@@ -127,7 +128,7 @@ class CustomDataset(torch.utils.data.Dataset):
         return self.len
 
 
-def create_model(input_size: int, config: dict) -> DTFSClassifier:
+def create_model(input_size: int, config: dict) -> ChipTestClassifier:
     """
     Factory function to create model with configuration
     
@@ -142,7 +143,7 @@ def create_model(input_size: int, config: dict) -> DTFSClassifier:
         >>> config = {'hidden_size': 4, 'dropout': 0.5}
         >>> model = create_model(input_size=202, config=config)
     """
-    return DTFSClassifier(
+    return ChipTestClassifier(
         input_size=input_size,
         hidden_size=config.get('hidden_size', 4),
         dropout=config.get('dropout', 0.5)
@@ -158,7 +159,7 @@ if __name__ == "__main__":
     y = np.random.randint(0, 2, 100)
     
     # Create model
-    model = DTFSClassifier(input_size=202, hidden_size=4)
+    model = ChipTestClassifier(input_size=202, hidden_size=4)
     
     # Create dataset and loader
     dataset = CustomDataset(X, y)

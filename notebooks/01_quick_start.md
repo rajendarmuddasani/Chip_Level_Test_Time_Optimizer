@@ -1,6 +1,6 @@
-# DTFS Quick Start Guide
+# Quick Start Guide
 
-This notebook provides a quick walkthrough of the Dynamic Test Flow Selection (DTFS) system.
+This notebook provides a quick walkthrough of the Chip-Level Test Time Optimization system.
 
 ## 📚 Table of Contents
 1. [Setup](#setup)
@@ -21,10 +21,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Import DTFS modules
+# Import modules
 from preprocessing.preprocessing import FeatureScaler, DataValidator, preprocess_pipeline
 from models.ensemble import HybridEnsemble
-from evaluation.metrics import DTFSEvaluator
+from evaluation.metrics import TestTimeEvaluator
 
 # Configure plotting
 sns.set_style('whitegrid')
@@ -167,7 +167,7 @@ plt.show()
 y_true = np.random.choice([0, 1], size=n_samples, p=[0.98, 0.02])
 
 # Evaluate
-evaluator = DTFSEvaluator()
+evaluator = TestTimeEvaluator()
 metrics = evaluator.evaluate(y_true, ensemble_flags)
 
 evaluator.print_report()

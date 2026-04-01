@@ -1,7 +1,7 @@
 """
 Model Evaluation and Metrics Calculation
 
-This module provides comprehensive evaluation metrics for DTFS models,
+This module provides comprehensive evaluation metrics for test-skip models,
 including business metrics (time savings, cost) and ML metrics (accuracy, recall).
 """
 
@@ -20,16 +20,16 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-class DTFSEvaluator:
+class TestTimeEvaluator:
     """
-    Comprehensive evaluator for DTFS models
+    Comprehensive evaluator for chip test-time optimization models
     
     Calculates both ML metrics and business metrics:
     - ML: Accuracy, Precision, Recall, F1, ROC-AUC
     - Business: Skip rate, Escapee rate, Overreject rate, Time savings
     
     Example:
-        >>> evaluator = DTFSEvaluator()
+        >>> evaluator = TestTimeEvaluator()
         >>> metrics = evaluator.evaluate(y_true, y_pred, y_proba)
         >>> print(f"Skip rate: {metrics['skip_rate']:.2%}")
     """
@@ -143,7 +143,7 @@ class DTFSEvaluator:
             return
         
         print("\n" + "="*60)
-        print("DTFS MODEL EVALUATION REPORT")
+        print("MODEL EVALUATION REPORT")
         print("="*60)
         
         print("\n📊 ML METRICS:")
@@ -186,7 +186,7 @@ class DTFSEvaluator:
             cmap='Blues',
             ax=ax
         )
-        plt.title('DTFS Confusion Matrix')
+        plt.title('Confusion Matrix')
         
         if save_path:
             plt.savefig(save_path, dpi=300, bbox_inches='tight')
@@ -288,7 +288,7 @@ def calculate_production_metrics(flags_df: pd.DataFrame,
 
 
 if __name__ == "__main__":
-    print("=== DTFS Evaluator Example ===\n")
+    print("=== Test Time Evaluator Example ===\n")
     
     # Create synthetic data
     np.random.seed(42)
@@ -313,7 +313,7 @@ if __name__ == "__main__":
                        np.random.uniform(0.0, 0.3, n_samples))
     
     # Evaluate
-    evaluator = DTFSEvaluator()
+    evaluator = TestTimeEvaluator()
     metrics = evaluator.evaluate(y_true, y_pred, y_proba)
     evaluator.print_report()
     

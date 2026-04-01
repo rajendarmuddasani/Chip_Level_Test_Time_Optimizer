@@ -214,7 +214,7 @@ class HybridEnsemble:
             'classifier_config': {
                 'input_size': self.classifier.input_size if self.classifier else None,
                 'hidden_size': self.classifier.hidden_size if self.classifier else None,
-                'dropout_rate': self.classifier.dropout_rate if self.classifier else None,
+                'dropout': self.classifier.dropout_rate if self.classifier else None,
             },
             'vae_config': {
                 'input_size': self.vae.input_size if self.vae else None,

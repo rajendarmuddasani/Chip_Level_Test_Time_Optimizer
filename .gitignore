@@ -4,6 +4,9 @@
 .env.*.local
 *.env
 
+# Data (large CSVs)
+data/
+
 # Python
 __pycache__/
 *.py[cod]
@@ -50,6 +53,7 @@ env/
 *.pt
 *.pth
 models/*.pt
+artifacts/
 models/*.h5
 
 # Data files (large datasets)

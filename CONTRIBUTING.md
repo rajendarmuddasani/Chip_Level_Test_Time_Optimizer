@@ -1,6 +1,6 @@
-# Contributing to DTFS
+# Contributing to Chip_Level_Test_Time_Optimizer
 
-Thank you for your interest in contributing to the Dynamic Test Flow Selection project!
+Thank you for your interest in contributing to this chip-level test-time optimization project.
 
 ## 🤝 How to Contribute
 
@@ -19,8 +19,8 @@ Thank you for your interest in contributing to the Dynamic Test Flow Selection p
 #### Setup Development Environment
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/dtfs-public-portfolio.git
-cd dtfs-public-portfolio
+git clone https://github.com/YOUR_USERNAME/<your-fork>.git
+cd <your-fork>
 
 # Create virtual environment
 python -m venv venv
@@ -41,11 +41,11 @@ pip install pytest black flake8 mypy jupyter
 
 #### Testing
 ```bash
-# Run tests
-pytest tests/
+# Import-level smoke check
+python -c "from deployment.generate_flags import FlagGenerator; print('flag generator import ok')"
 
-# Run with coverage
-pytest --cov=models --cov=preprocessing --cov=deployment tests/
+# Add and run pytest suites as tests are introduced
+pytest
 ```
 
 #### Pull Request Process
@@ -59,7 +59,6 @@ pytest --cov=models --cov=preprocessing --cov=deployment tests/
 
 ### Documentation
 - Update README.md for user-facing changes
-- Update ARCHITECTURE.md for technical changes
 - Add docstrings to all functions and classes
 - Include examples in docstrings
 
@@ -120,4 +119,4 @@ Open an issue with the "question" label or contact the maintainers.
 
 ---
 
-Thank you for contributing to DTFS! 🎉
+Thank you for contributing.

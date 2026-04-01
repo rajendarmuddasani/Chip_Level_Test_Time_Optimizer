@@ -34,7 +34,7 @@ class ModelRegistry:
         >>> model = registry.load_production_model('TF_ADC_1')
     """
     
-    def __init__(self, tracking_uri: str = None, experiment_name: str = 'DTFS'):
+    def __init__(self, tracking_uri: str = None, experiment_name: str = 'chip_test_optimizer'):
         """
         Initialize MLflow registry
         
@@ -259,7 +259,7 @@ def example_registration():
     print("   registry = ModelRegistry(tracking_uri='http://localhost:5000')")
     
     print("\n2. Train your model:")
-    print("   model = DTFSClassifier(input_size=202, hidden_size=4)")
+    print("   model = ChipTestClassifier(input_size=202, hidden_size=4)")
     print("   # ... training code ...")
     
     print("\n3. Register model:")

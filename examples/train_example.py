@@ -1,5 +1,5 @@
 """
-Example Training Script for DTFS Classifier
+Example Training Script for Chip Test Classifier
 
 This script demonstrates the training workflow for the neural network classifier.
 In production, this would be adapted to your specific data pipeline and infrastructure.
@@ -19,20 +19,20 @@ from pathlib import Path
 # Add parent directory to path
 sys.path.append(str(Path(__file__).parent.parent))
 
-from models.classification.classifier_model import DTFSClassifier, CustomDataset
+from models.classification.classifier_model import ChipTestClassifier, CustomDataset
 from preprocessing.preprocessing import FeatureScaler, preprocess_pipeline
-from evaluation.metrics import DTFSEvaluator
+from evaluation.metrics import TestTimeEvaluator
 
 
 def train_classifier(config: dict):
     """
-    Train DTFS classifier
+    Train chip test classifier
     
     Args:
         config: Training configuration dictionary
     """
     print("="*60)
-    print("DTFS Classifier Training")
+    print("Chip Test Classifier Training")
     print("="*60)
     
     # 1. Load Data
@@ -83,7 +83,7 @@ def train_classifier(config: dict):
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     print(f"  Device: {device}")
     
-    model = DTFSClassifier(
+    model = ChipTestClassifier(
         input_size=X_train.shape[1],
         hidden_size=config['hidden_size'],
         dropout=config['dropout']
@@ -182,7 +182,7 @@ def train_classifier(config: dict):
     all_probs = np.array(all_probs)
     
     # Evaluate
-    evaluator = DTFSEvaluator()
+    evaluator = TestTimeEvaluator()
     metrics = evaluator.evaluate(y_test, all_preds, all_probs)
     evaluator.print_report()
     

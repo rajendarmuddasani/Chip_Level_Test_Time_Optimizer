@@ -318,7 +318,7 @@ def preprocess_pipeline(df: pd.DataFrame,
     
     # Step 3: Handle missing values (simple forward fill for now)
     n_missing_before = df.isnull().sum().sum()
-    df = df.fillna(method='ffill').fillna(method='bfill').fillna(0)
+    df = df.ffill().bfill().fillna(0)
     metadata['n_missing_imputed'] = n_missing_before
     
     # Step 4: Scale features
