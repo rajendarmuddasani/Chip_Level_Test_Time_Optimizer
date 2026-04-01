@@ -93,3 +93,6 @@ temp/
 # OS specific
 Thumbs.db
 .DS_Store
+
+# Shared dataset directory (WM-811K etc — download separately)
+data_shared/
