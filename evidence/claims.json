@@ -1,0 +1,37 @@
+{
+  "project": "Chip-Level Test Time Optimizer",
+  "claims": [
+    {
+      "claim": "SigmaRule correctly flags extreme outliers (8σ variance) after fitting on normal distribution data",
+      "value": true,
+      "unit": "boolean",
+      "evidence_class": "measured",
+      "artifact": "tests/test_sigma_rules.py::test_sigma_rule_flags_outliers"
+    },
+    {
+      "claim": "All business metrics (skip_rate, escapee_rate, overreject_rate, test_rate) are in [0, 1]",
+      "value": true,
+      "unit": "boolean",
+      "evidence_class": "measured",
+      "artifact": "tests/test_evaluator.py::test_evaluate_ml_metrics_range"
+    },
+    {
+      "claim": "HybridEnsemble OR logic guarantees ensemble flags are a superset of sigma rule flags",
+      "value": true,
+      "unit": "boolean",
+      "evidence_class": "measured",
+      "artifact": "tests/test_ensemble.py::test_ensemble_or_logic_with_sigma"
+    },
+    {
+      "claim": "DataValidator rejects empty DataFrames and DataFrames missing required features",
+      "value": true,
+      "unit": "boolean",
+      "evidence_class": "measured",
+      "artifact": "tests/test_preprocessing.py"
+    }
+  ],
+  "business_impact": {
+    "metric": "chip test skip rate",
+    "conservative_OR_logic": "zero escapees prioritized over aggressive skipping"
+  }
+}
