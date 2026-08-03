@@ -1,5 +1,9 @@
 # Chip-Level Test Time Optimizer
 
+[![CI](https://github.com/rajendarmuddasani/Chip_Level_Test_Time_Optimizer/actions/workflows/ci.yml/badge.svg)](https://github.com/rajendarmuddasani/Chip_Level_Test_Time_Optimizer/actions/workflows/ci.yml)
+![Tests](https://img.shields.io/badge/tests-32%20passed-brightgreen)
+[![Evidence](https://img.shields.io/badge/evidence-verified-blue)](evidence/claims.json)
+
 Reduces semiconductor test time by generating per-chip skip/run flags using a hybrid ensemble of neural classification, VAE anomaly detection, and statistical sigma-rule screening. Targets up to 15% test-time reduction while maintaining zero-escapee safety through conservative decision logic.
 
 ## Problem
