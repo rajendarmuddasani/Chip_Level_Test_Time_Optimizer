@@ -341,7 +341,7 @@
     }
   },
   "dataset_manifest": "evidence/public_synthetic_dataset_manifest.json",
-  "dataset_manifest_sha256": "11602b9ba409f7b161e43858ab45aec1ae7e0a471e7e98f255720063205f06f8",
+  "dataset_manifest_sha256": "52b31fed5fe2ec0ddc49ea12888d04965292f76bf67f0ff788104130bae4469b",
   "experiment_id": "public_synthetic_hybrid_v1",
   "ood_confirmation": {
     "all_components_missed_failures": 197,

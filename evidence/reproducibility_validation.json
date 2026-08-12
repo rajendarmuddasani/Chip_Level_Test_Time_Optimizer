@@ -25,7 +25,7 @@
   },
   "operational_metrics_replayed": true,
   "operational_prediction_sha256": "d5d50071d10de5bf0dfb531b843c49567a42cb170b595cc1b990f4c2a30661db",
-  "runtime_manifest_sha256": "7eda203201f9ce650c666ef64cef8e8ebd9f69a64e517a5bad1fa29e32972d29",
+  "runtime_manifest_sha256": "9254e9855f480c7f64e8c91fb6e2cdbfba97bd03562855de59758e515feeef0e",
   "schema_version": 1,
   "status": "passed",
   "training_replay": {

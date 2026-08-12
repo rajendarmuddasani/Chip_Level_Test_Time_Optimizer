@@ -12,9 +12,9 @@
   "bundle_id": "53ce0e9ccbd63b3c84c581a0dedc325782e8c09b72847977626f41aa6ad3d1fe",
   "evidence": {
     "dataset_manifest_path": "../../evidence/public_synthetic_dataset_manifest.json",
-    "dataset_manifest_sha256": "11602b9ba409f7b161e43858ab45aec1ae7e0a471e7e98f255720063205f06f8",
+    "dataset_manifest_sha256": "52b31fed5fe2ec0ddc49ea12888d04965292f76bf67f0ff788104130bae4469b",
     "evaluation_path": "../../evidence/public_synthetic_evaluation.json",
-    "evaluation_sha256": "3d79b38a84b5ef485622ec124a68805482d413cbe0a3daed30e9ef5c832470a0"
+    "evaluation_sha256": "91d583b5dd7229bd1cfbf667a33b99db878a02db5af4fed9b63e07bd96659ba6"
   },
   "model_id": "public_synthetic_hybrid_v1",
   "runtime_config": {

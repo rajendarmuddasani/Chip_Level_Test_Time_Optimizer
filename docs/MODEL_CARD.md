@@ -8,7 +8,7 @@
 | Bundle ID | `53ce0e9ccbd63b3c84c581a0dedc325782e8c09b72847977626f41aa6ad3d1fe` |
 | Classifier SHA-256 | `52da84b9972d3ede2b3f1860f1c07080dfcb74db03882c120a07d7e696ff5c02` |
 | VAE SHA-256 | `0fc8a9bb9f9d02cb94d9b56c3a30fc6e4233410ea5e83569640870189ba9d9d2` |
-| Runtime manifest SHA-256 | `7eda203201f9ce650c666ef64cef8e8ebd9f69a64e517a5bad1fa29e32972d29` |
+| Runtime manifest SHA-256 | `9254e9855f480c7f64e8c91fb6e2cdbfba97bd03562855de59758e515feeef0e` |
 
 Serving verifies both model files, the evaluation JSON, the dataset manifest, and the derived bundle identity before accepting inference.
 
