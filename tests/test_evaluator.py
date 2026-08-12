@@ -1,5 +1,6 @@
 """Tests for TestTimeEvaluator business and ML metrics."""
-import sys, os
+import os
+import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 import numpy as np
@@ -77,9 +78,7 @@ def test_evaluate_with_proba():
 def test_calculate_time_savings():
     ev = TestTimeEvaluator()
     y_pred = np.array([0]*600 + [1]*400)  # 60% skip
-    savings = ev.calculate_time_savings(
-        y_pred, test_time_per_chip=30.0, cost_per_hour=100.0,
-        n_lots=1, chips_per_lot=1000)
+    savings = ev.calculate_time_savings(y_pred)
     assert isinstance(savings, dict)
-    # Skipping 600 chips of 1000 should save time
-    assert any(v > 0 for v in savings.values() if isinstance(v, (int, float)))
+    assert savings["skip_rate"] == pytest.approx(0.60)
+    assert savings["time_reduction_percent"] == pytest.approx(9.0)

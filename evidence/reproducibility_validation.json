@@ -1,0 +1,184 @@
+{
+  "bundle_id": "53ce0e9ccbd63b3c84c581a0dedc325782e8c09b72847977626f41aa6ad3d1fe",
+  "claim_checks": {
+    "bundle_id": true,
+    "operational_metrics": true,
+    "selected_candidate": true,
+    "targets_unmet": true
+  },
+  "dataset_split_checks": {
+    "confirmation": true,
+    "known_shift_validation": true,
+    "known_shift_validation_2": true,
+    "ood_confirmation": true,
+    "ood_validation": true,
+    "ood_validation_2": true,
+    "train": true,
+    "validation": true
+  },
+  "errors": [],
+  "historical_source_hash_interpretation": "These hashes identify the source files recorded during frozen artifact generation. Current source includes recovered implementation and delivery changes; model, metric, and prediction replay are the active acceptance gates.",
+  "historical_source_hash_matches": {
+    "experiment.py": false,
+    "policy_metrics.py": false,
+    "synthetic_data.py": false
+  },
+  "operational_metrics_replayed": true,
+  "operational_prediction_sha256": "d5d50071d10de5bf0dfb531b843c49567a42cb170b595cc1b990f4c2a30661db",
+  "runtime_manifest_sha256": "7eda203201f9ce650c666ef64cef8e8ebd9f69a64e517a5bad1fa29e32972d29",
+  "schema_version": 1,
+  "status": "passed",
+  "training_replay": {
+    "behavioral_identity_passed": true,
+    "bundle_id_matches": false,
+    "canonical_bundle_id": "53ce0e9ccbd63b3c84c581a0dedc325782e8c09b72847977626f41aa6ad3d1fe",
+    "canonical_environment": {
+      "base_commit_sha": "8d59cd3e60b6d57efbf5454c8a3bc75ab3e9e721",
+      "command": "python scripts/run_public_benchmark.py",
+      "device": "cpu",
+      "numpy": "2.3.5",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "processor": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
+      "python": "3.12.10",
+      "recorded_at_utc": "2026-08-07T11:54:41.682783+00:00",
+      "source_hashes": {
+        "experiment.py": "8400cecfcf9c615d994a3e56d38c5c2ef25c0abf1af620a708893077471999b3",
+        "policy_metrics.py": "e70abeefe3bb48b551ed40e857bec5379aa399c87f8a8d87cfe345df25a9eb90",
+        "synthetic_data.py": "2149ad957bf6d0fedad94bbadb5a73b854b4a48964522265a87a251ff59ef231"
+      },
+      "torch": "2.11.0+cpu"
+    },
+    "checks": {
+      "artifact_hashes": true,
+      "confirmation_prediction_hash": true,
+      "ood_prediction_hash": true,
+      "selected_candidate": true,
+      "selected_metrics": true
+    },
+    "interpretation": "Model and prediction identities are acceptance checks. A different bundle ID is retained as a disclosed serialization difference when all behavioral replay checks pass.",
+    "replay_bundle_id": "73299d5a25997f253cd4038ff2aaabfe49b62ca71385de3f780ef85e0739645b",
+    "replay_environment": {
+      "base_commit_sha": "8d59cd3e60b6d57efbf5454c8a3bc75ab3e9e721",
+      "command": "python scripts/run_public_benchmark.py",
+      "device": "cpu",
+      "numpy": "1.26.4",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "processor": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
+      "python": "3.12.10",
+      "recorded_at_utc": "2026-08-09T06:43:18.608160+00:00",
+      "source_hashes": {
+        "experiment.py": "f565bb77b05b12e95b0ba0b9648148b196c3d3e2a48d2af0d1381c42dd8766a1",
+        "policy_metrics.py": "ebd6a0f3dce467aae9f53fb41e9d3bd2a8e6bd1c73f1a8028b569b000243db9b",
+        "synthetic_data.py": "22bdc7b2fcba8fea5f6142fa056e3afde0bb5c641058c694bc1f46e23c42f3c6"
+      },
+      "torch": "2.13.0+cpu"
+    },
+    "runtime_config_difference_summary": {
+      "count": 1026,
+      "maximum_absolute_numeric_difference": 2.1636486013942857e-07,
+      "numeric_count": 1026,
+      "sample": [
+        {
+          "canonical": 5.467338685616312,
+          "path": "/lot_drift_guard/calibration/known_score_range/0",
+          "replay": 5.467338685616315
+        },
+        {
+          "canonical": 13.657061268139696,
+          "path": "/lot_drift_guard/calibration/ood_score_range/0",
+          "replay": 13.657061268139694
+        },
+        {
+          "canonical": 18.8480995977175,
+          "path": "/lot_drift_guard/calibration/ood_score_range/1",
+          "replay": 18.848099597717496
+        },
+        {
+          "canonical": 200.32266010763598,
+          "path": "/lot_drift_guard/precision/0/0",
+          "replay": 200.32266010763604
+        },
+        {
+          "canonical": 0.5960152371874744,
+          "path": "/lot_drift_guard/precision/0/1",
+          "replay": 0.5960152371874375
+        },
+        {
+          "canonical": 0.3397433221562859,
+          "path": "/lot_drift_guard/precision/0/2",
+          "replay": 0.33974332215619724
+        },
+        {
+          "canonical": -0.14333156077484832,
+          "path": "/lot_drift_guard/precision/0/3",
+          "replay": -0.14333156077479858
+        },
+        {
+          "canonical": 0.05536785617435183,
+          "path": "/lot_drift_guard/precision/0/4",
+          "replay": 0.05536785617441719
+        },
+        {
+          "canonical": -0.34600614535560986,
+          "path": "/lot_drift_guard/precision/0/5",
+          "replay": -0.34600614535547963
+        },
+        {
+          "canonical": -0.389427354908672,
+          "path": "/lot_drift_guard/precision/0/6",
+          "replay": -0.38942735490873476
+        },
+        {
+          "canonical": 0.33250523027538065,
+          "path": "/lot_drift_guard/precision/0/7",
+          "replay": 0.3325052302755705
+        },
+        {
+          "canonical": -0.06558524157404727,
+          "path": "/lot_drift_guard/precision/0/8",
+          "replay": -0.06558524157409165
+        },
+        {
+          "canonical": 0.025695949892213056,
+          "path": "/lot_drift_guard/precision/0/9",
+          "replay": 0.025695949892139143
+        },
+        {
+          "canonical": -0.03407642669599284,
+          "path": "/lot_drift_guard/precision/0/10",
+          "replay": -0.034076426696054284
+        },
+        {
+          "canonical": -0.41160360309073907,
+          "path": "/lot_drift_guard/precision/0/11",
+          "replay": -0.4116036030905511
+        },
+        {
+          "canonical": -0.11112592272446428,
+          "path": "/lot_drift_guard/precision/0/12",
+          "replay": -0.11112592272444674
+        },
+        {
+          "canonical": 0.3189219443964082,
+          "path": "/lot_drift_guard/precision/0/13",
+          "replay": 0.31892194439629373
+        },
+        {
+          "canonical": 0.4008507248351632,
+          "path": "/lot_drift_guard/precision/0/14",
+          "replay": 0.4008507248351518
+        },
+        {
+          "canonical": 0.328998584751061,
+          "path": "/lot_drift_guard/precision/0/15",
+          "replay": 0.3289985847511116
+        },
+        {
+          "canonical": 0.400545407529173,
+          "path": "/lot_drift_guard/precision/0/16",
+          "replay": 0.4005454075291153
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "binary_file_count": 4,
+  "binary_files": [
+    "artifacts/public_v1/classifier_state.pt",
+    "artifacts/public_v1/vae_state.pt",
+    "docs/assets/candidate_tradeoff.png",
+    "docs/assets/confirmation_policy_matrix.png"
+  ],
+  "candidate_file_count": 78,
+  "findings": [],
+  "provenance_note": "No internal reference repository was accessed for this scan; the payload is checked for internal identifiers and local paths only.",
+  "schema_version": 1,
+  "scope": "candidate public Project 05 files; ignored pdocs and tmp excluded",
+  "status": "passed",
+  "text_file_count": 74,
+  "tracked_pdocs_count": 0
+}

@@ -9,6 +9,7 @@ significantly from normal behavior.
 import numpy as np
 import pandas as pd
 from scipy import stats
+from sklearn.covariance import LedoitWolf
 from typing import Dict, Tuple
 import joblib
 
@@ -41,6 +42,10 @@ class SigmaRule:
         self.max_sigma = max_sigma
         self.step = step
         self.dict_sigma = {}
+        self.aggregate_threshold = None
+        self.correlation_location = None
+        self.correlation_precision = None
+        self.correlation_threshold = None
     
     def robust_std(self, val: np.ndarray, q_left: float = 0.05, 
                    q_right: float = 0.95) -> float:
@@ -115,8 +120,50 @@ class SigmaRule:
                 'rstd': rstd,
                 'median': median
             }
+
+        aggregate_scores = self.aggregate_score(X)
+        tail_fraction = min(0.5, self.target_fail_count / len(aggregate_scores))
+        self.aggregate_threshold = float(
+            np.quantile(aggregate_scores, 1.0 - tail_fraction, method='higher')
+        )
+
+        robust_z = self._robust_z_matrix(X)
+        covariance = LedoitWolf().fit(robust_z)
+        self.correlation_location = covariance.location_
+        self.correlation_precision = covariance.precision_
+        correlation_scores = self.correlation_score(X)
+        self.correlation_threshold = float(
+            np.quantile(correlation_scores, 1.0 - tail_fraction, method='higher')
+        )
         
         return self
+
+    def _robust_z_matrix(self, X: pd.DataFrame) -> np.ndarray:
+        columns = []
+        for col in X.columns:
+            if col not in self.dict_sigma:
+                continue
+            params = self.dict_sigma[col]
+            scale = max(float(params['rstd']), np.finfo(float).eps)
+            columns.append((X[col].to_numpy(dtype=float) - params['median']) / scale)
+        if not columns:
+            raise ValueError("No fitted features are present")
+        return np.column_stack(columns)
+
+    def aggregate_score(self, X: pd.DataFrame) -> np.ndarray:
+        """Calculate root-mean-square robust z-score across fitted features."""
+        robust_z = self._robust_z_matrix(X)
+        return np.sqrt(np.mean(np.square(robust_z), axis=1))
+
+    def correlation_score(self, X: pd.DataFrame) -> np.ndarray:
+        """Calculate shrinkage Mahalanobis distance from training-pass behavior."""
+        if self.correlation_location is None or self.correlation_precision is None:
+            raise ValueError("Correlation guard is not fitted")
+        centred = self._robust_z_matrix(X) - self.correlation_location
+        squared_distance = np.einsum(
+            'ij,jk,ik->i', centred, self.correlation_precision, centred
+        )
+        return np.sqrt(np.maximum(squared_distance, 0.0))
     
     def get_bounds(self, col: str) -> Tuple[float, float]:
         """
@@ -164,6 +211,14 @@ class SigmaRule:
             # Flag outliers (OR operation across all features)
             outliers = (col_val > upper_bound) | (col_val < lower_bound)
             result = result | outliers.astype(int)
+
+        if self.aggregate_threshold is not None:
+            aggregate_outliers = self.aggregate_score(X) > self.aggregate_threshold
+            result = result | aggregate_outliers.astype(int)
+
+        if self.correlation_threshold is not None:
+            correlation_outliers = self.correlation_score(X) > self.correlation_threshold
+            result = result | correlation_outliers.astype(int)
         
         return result
     
@@ -207,7 +262,7 @@ def calculate_sigma_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> Dict[str,
         'recall': recall_score(y_true, y_pred, zero_division=0),
         'overreject_rate': fp / (tn + fp) if (tn + fp) > 0 else 0,
         'escapee_rate': fn / (tp + fn) if (tp + fn) > 0 else 0,
-        'skip_rate': tn / (tn + fp) if (tn + fp) > 0 else 0,
+        'skip_rate': (tn + fn) / (tn + fp + fn + tp),
         'flag_rate': (tp + fp) / (tn + fp + fn + tp)
     }
     

@@ -5,12 +5,20 @@ on:
     branches: ["main", "master", "develop"]
   pull_request:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: project-05-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  test:
+  quality:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        python-version: ["3.10", "3.11"]
+        python-version: ["3.10", "3.11", "3.12"]
 
     steps:
       - uses: actions/checkout@v4
@@ -19,23 +27,166 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: |
+            requirements-runtime.txt
+            requirements-test.txt
 
-      - name: Install dependencies
+      - name: Install test dependencies
+        run: python -m pip install --requirement requirements-test.txt
+
+      - name: Audit runtime dependencies
+        run: python -m pip_audit --requirement requirements-runtime.txt
+
+      - name: Scan candidate public payload
+        run: python scripts/scan_public_payload.py --output evidence/public_payload_scan.json
+
+      - name: Lint completed surfaces
+        run: >-
+          python -m ruff check
+          benchmark
+          deployment/api.py
+          deployment/runtime.py
+          deployment/generate_flags.py
+          evaluation/metrics.py
+          scripts/run_public_benchmark.py
+          scripts/run_operational_envelope_confirmation.py
+          scripts/run_api_load.py
+          scripts/scan_public_payload.py
+          scripts/validate_evidence.py
+          app.py
+          tests/test_api.py
+          tests/test_dashboard.py
+          tests/test_documentation.py
+          tests/test_drift.py
+          tests/test_ensemble.py
+          tests/test_evaluator.py
+          tests/test_evidence.py
+          tests/test_experiment.py
+          tests/test_flag_generation.py
+          tests/test_notebook.py
+          tests/test_policy_metrics.py
+          tests/test_privacy.py
+          tests/test_runtime.py
+          tests/test_synthetic_data.py
+          tests/test_vae.py
+          models/anomaly_detection/vae_model.py
+          models/ensemble.py
+          models/statistical/sigma_rules.py
+          --select E4,E7,E9,F
+          --ignore E402
+
+      - name: Run tests and coverage
+        run: >-
+          python -m pytest tests -q
+          --cov=benchmark
+          --cov=deployment
+          --cov=models
+          --cov=evaluation
+          --cov=preprocessing
+          --cov-report=term
+          --cov-report=xml:coverage.xml
+          --cov-fail-under=60
+
+      - name: Replay evidence
+        run: python scripts/validate_evidence.py
+
+      - name: Upload coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-python-${{ matrix.python-version }}
+          path: coverage.xml
+          if-no-files-found: error
+
+  container:
+    needs: quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build non-root image
+        run: docker build --tag chip-test-policy:ci .
+
+      - name: Scan image for high and critical vulnerabilities
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: chip-test-policy:ci
+          format: table
+          exit-code: "1"
+          severity: HIGH,CRITICAL
+
+      - name: Verify image user
+        run: test "$(docker image inspect --format '{{.Config.User}}' chip-test-policy:ci)" = "65532:65532"
+
+      - name: Start API
+        run: >-
+          docker run --detach
+          --name chip-test-policy-api
+          --read-only
+          --tmpfs /tmp:size=64m,mode=1777
+          --cap-drop ALL
+          --security-opt no-new-privileges:true
+          --env CHIP_OPTIMIZER_API_KEY=ci-test-key
+          --publish 8005:8000
+          chip-test-policy:ci
+
+      - name: Smoke API
         run: |
-          python -m pip install --upgrade pip
-          pip install pytest pytest-cov ruff numpy pandas scikit-learn torch joblib matplotlib
-
-      - name: Lint
-        run: ruff check models/ evaluation/ preprocessing/ tests/ --select E,W,F --ignore E501 || true
-
-      - name: Run tests
-        run: pytest tests/ -v --tb=short -x
-
-      - name: Validate evidence
-        run: |
-          python -c "
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:8005/ready > ready.json; then
+              break
+            fi
+            sleep 2
+          done
+          python - <<'PY'
           import json
-          c = json.load(open('evidence/claims.json'))
-          assert len(c['claims']) >= 4
-          print(f'OK: {len(c[\"claims\"])} claims validated')
-          "
+          import urllib.request
+
+          ready = json.load(open("ready.json", encoding="utf-8"))
+          assert ready["status"] == "ready"
+          fixture = json.load(open("examples/public_synthetic_input.json", encoding="utf-8"))
+          request = urllib.request.Request(
+              "http://127.0.0.1:8005/v1/predict",
+              data=json.dumps({"records": fixture["records"]}).encode("utf-8"),
+              headers={"Content-Type": "application/json", "X-API-Key": "ci-test-key"},
+              method="POST",
+          )
+          with urllib.request.urlopen(request, timeout=30) as response:
+              payload = json.load(response)
+          assert payload["summary"]["skip_count"] == 450
+          assert payload["summary"]["run_count"] == 50
+          assert payload["summary"]["simulated_time_reduction_percent"] == 13.5
+          assert payload["summary"]["bundle_id"] == ready["bundle_id"]
+          PY
+
+      - name: Start dashboard
+        run: >-
+          docker run --detach
+          --name chip-test-policy-dashboard
+          --read-only
+          --tmpfs /tmp:size=64m,mode=1777
+          --cap-drop ALL
+          --security-opt no-new-privileges:true
+          --publish 8505:8501
+          chip-test-policy:ci
+          /venv/bin/python -m streamlit run app.py
+          --server.address=0.0.0.0
+          --server.port=8501
+          --server.headless=true
+
+      - name: Smoke dashboard
+        run: |
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:8505/_stcore/health | grep --quiet ok; then
+              exit 0
+            fi
+            sleep 2
+          done
+          docker logs chip-test-policy-dashboard
+          exit 1
+
+      - name: Stop containers
+        if: always()
+        run: docker rm --force chip-test-policy-api chip-test-policy-dashboard || true

@@ -1,0 +1,255 @@
+{
+  "base_seed": 20260807,
+  "feature_count": 32,
+  "feature_groups": {
+    "current": [
+      "I_00",
+      "I_01",
+      "I_02",
+      "I_03",
+      "I_04",
+      "I_05",
+      "I_06",
+      "I_07"
+    ],
+    "resistance": [
+      "R_00",
+      "R_01",
+      "R_02",
+      "R_03",
+      "R_04",
+      "R_05",
+      "R_06",
+      "R_07"
+    ],
+    "timing": [
+      "T_00",
+      "T_01",
+      "T_02",
+      "T_03",
+      "T_04",
+      "T_05",
+      "T_06",
+      "T_07"
+    ],
+    "voltage": [
+      "V_00",
+      "V_01",
+      "V_02",
+      "V_03",
+      "V_04",
+      "V_05",
+      "V_06",
+      "V_07"
+    ]
+  },
+  "generator_version": "public_grouped_synthetic_v1",
+  "isolation": {
+    "chip_overlap": 0,
+    "lot_overlap": 0,
+    "time_overlap": 0
+  },
+  "known_failure_modes": [
+    "voltage_drift",
+    "leakage_spike",
+    "timing_shift",
+    "resistance_bridge"
+  ],
+  "license": "MIT repository code; generated rows are not redistributed",
+  "ood_failure_mode": "novel_coupled_drift",
+  "provenance": "independently generated synthetic data; no external dataset",
+  "schema_version": 1,
+  "splits": {
+    "confirmation": {
+      "fail_samples": 600,
+      "failure_mode_counts": {
+        "leakage_spike": 160,
+        "pass": 9400,
+        "resistance_bridge": 140,
+        "timing_shift": 140,
+        "voltage_drift": 160
+      },
+      "lot_count": 20,
+      "pass_samples": 9400,
+      "samples": 10000,
+      "sha256": "79a857db561810379aa9a771ae8eb396ea27c1a1b555f92c21ff60da4d8752a8",
+      "spec": {
+        "chips_per_lot": 500,
+        "fail_rate": 0.06,
+        "first_time_index": 160,
+        "lot_count": 20,
+        "name": "confirmation",
+        "ood": false,
+        "phase_drift": 0.42
+      },
+      "time_index_max": 179,
+      "time_index_min": 160
+    },
+    "known_shift_validation": {
+      "fail_samples": 360,
+      "failure_mode_counts": {
+        "leakage_spike": 96,
+        "pass": 5640,
+        "resistance_bridge": 84,
+        "timing_shift": 84,
+        "voltage_drift": 96
+      },
+      "lot_count": 12,
+      "pass_samples": 5640,
+      "samples": 6000,
+      "sha256": "5a6b38cf3e03c5b7996c4d83e937d652cd51dd5d3226156b3c3dff39da18b50a",
+      "spec": {
+        "chips_per_lot": 500,
+        "fail_rate": 0.06,
+        "first_time_index": 60,
+        "lot_count": 12,
+        "name": "known_shift_validation",
+        "ood": false,
+        "phase_drift": 0.18
+      },
+      "time_index_max": 71,
+      "time_index_min": 60
+    },
+    "known_shift_validation_2": {
+      "fail_samples": 600,
+      "failure_mode_counts": {
+        "leakage_spike": 160,
+        "pass": 9400,
+        "resistance_bridge": 140,
+        "timing_shift": 140,
+        "voltage_drift": 160
+      },
+      "lot_count": 20,
+      "pass_samples": 9400,
+      "samples": 10000,
+      "sha256": "e43730642382a02e3ca4d153009d2ea6345a675a21c9edf63cfbf38be6ffdac2",
+      "spec": {
+        "chips_per_lot": 500,
+        "fail_rate": 0.06,
+        "first_time_index": 100,
+        "lot_count": 20,
+        "name": "known_shift_validation_2",
+        "ood": false,
+        "phase_drift": 0.3
+      },
+      "time_index_max": 119,
+      "time_index_min": 100
+    },
+    "ood_confirmation": {
+      "fail_samples": 1000,
+      "failure_mode_counts": {
+        "novel_coupled_drift": 1000,
+        "pass": 4000
+      },
+      "lot_count": 10,
+      "pass_samples": 4000,
+      "samples": 5000,
+      "sha256": "569ded90d96799010ee9ae5dd749d7f63ce8624877e74c4f8877491fb5f23972",
+      "spec": {
+        "chips_per_lot": 500,
+        "fail_rate": 0.2,
+        "first_time_index": 190,
+        "lot_count": 10,
+        "name": "ood_confirmation",
+        "ood": true,
+        "phase_drift": 0.48
+      },
+      "time_index_max": 199,
+      "time_index_min": 190
+    },
+    "ood_validation": {
+      "fail_samples": 400,
+      "failure_mode_counts": {
+        "novel_coupled_drift": 400,
+        "pass": 1600
+      },
+      "lot_count": 4,
+      "pass_samples": 1600,
+      "samples": 2000,
+      "sha256": "25802ec6684ab93d14d475fb545853680fc476a2956430c6f0792643551137cf",
+      "spec": {
+        "chips_per_lot": 500,
+        "fail_rate": 0.2,
+        "first_time_index": 80,
+        "lot_count": 4,
+        "name": "ood_validation",
+        "ood": true,
+        "phase_drift": 0.26
+      },
+      "time_index_max": 83,
+      "time_index_min": 80
+    },
+    "ood_validation_2": {
+      "fail_samples": 1000,
+      "failure_mode_counts": {
+        "novel_coupled_drift": 1000,
+        "pass": 4000
+      },
+      "lot_count": 10,
+      "pass_samples": 4000,
+      "samples": 5000,
+      "sha256": "6b7b13b2256acd7065058c5b1fa40d9f5c3e7ebeb30d2697d9c464fa327a1023",
+      "spec": {
+        "chips_per_lot": 500,
+        "fail_rate": 0.2,
+        "first_time_index": 130,
+        "lot_count": 10,
+        "name": "ood_validation_2",
+        "ood": true,
+        "phase_drift": 0.36
+      },
+      "time_index_max": 139,
+      "time_index_min": 130
+    },
+    "train": {
+      "fail_samples": 960,
+      "failure_mode_counts": {
+        "leakage_spike": 256,
+        "pass": 15040,
+        "resistance_bridge": 224,
+        "timing_shift": 224,
+        "voltage_drift": 256
+      },
+      "lot_count": 32,
+      "pass_samples": 15040,
+      "samples": 16000,
+      "sha256": "f0e6ec583d5381819c1db20c44897742040063f9d4364ed7d7587025cd1feb24",
+      "spec": {
+        "chips_per_lot": 500,
+        "fail_rate": 0.06,
+        "first_time_index": 0,
+        "lot_count": 32,
+        "name": "train",
+        "ood": false,
+        "phase_drift": 0.0
+      },
+      "time_index_max": 31,
+      "time_index_min": 0
+    },
+    "validation": {
+      "fail_samples": 240,
+      "failure_mode_counts": {
+        "leakage_spike": 64,
+        "pass": 3760,
+        "resistance_bridge": 56,
+        "timing_shift": 56,
+        "voltage_drift": 64
+      },
+      "lot_count": 8,
+      "pass_samples": 3760,
+      "samples": 4000,
+      "sha256": "4959136ba57da08c8a31dbb8ea37528d8b3c9e3e8d344016f33c22263bac2bdd",
+      "spec": {
+        "chips_per_lot": 500,
+        "fail_rate": 0.06,
+        "first_time_index": 40,
+        "lot_count": 8,
+        "name": "validation",
+        "ood": false,
+        "phase_drift": 0.1
+      },
+      "time_index_max": 47,
+      "time_index_min": 40
+    }
+  }
+}

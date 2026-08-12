@@ -8,12 +8,12 @@ including business metrics (time savings, cost) and ML metrics (accuracy, recall
 import numpy as np
 import pandas as pd
 from sklearn.metrics import (
-    confusion_matrix, classification_report, 
+    confusion_matrix,
     accuracy_score, precision_score, recall_score, f1_score,
-    roc_auc_score, roc_curve, precision_recall_curve
+    roc_auc_score, roc_curve
 )
 import matplotlib.pyplot as plt
-from typing import Dict, Tuple
+from typing import Dict
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -33,6 +33,8 @@ class TestTimeEvaluator:
         >>> metrics = evaluator.evaluate(y_true, y_pred, y_proba)
         >>> print(f"Skip rate: {metrics['skip_rate']:.2%}")
     """
+
+    __test__ = False
     
     def __init__(self):
         self.results = {}
@@ -92,48 +94,36 @@ class TestTimeEvaluator:
         self.results = all_metrics
         return all_metrics
     
-    def calculate_time_savings(self, y_pred: np.ndarray,
-                              test_time_per_chip: float = 30.0,
-                              cost_per_hour: float = 100.0,
-                              n_lots: int = 1,
-                              chips_per_lot: int = 13000) -> Dict:
-        """
-        Calculate time and cost savings from test skipping
-        
-        Args:
-            y_pred: Predicted flags (0=skip, 1=test)
-            test_time_per_chip: Minutes per chip
-            cost_per_hour: Tester cost per hour (€)
-            n_lots: Number of production lots
-            chips_per_lot: Average chips per lot
-        
-        Returns:
-            Dictionary with savings calculations
-        """
+    def calculate_time_savings(
+        self,
+        y_pred: np.ndarray,
+        early_stage_units: float = 85.0,
+        optional_stage_units: float = 15.0,
+    ) -> Dict:
+        """Calculate simulated optional-stage reduction for the observed flags."""
+        if early_stage_units < 0 or optional_stage_units <= 0:
+            raise ValueError(
+                "Require early_stage_units >= 0 and optional_stage_units > 0"
+            )
+        if len(y_pred) == 0:
+            raise ValueError("At least one prediction is required")
+        if not set(np.unique(y_pred)).issubset({0, 1}):
+            raise ValueError("Predictions must be binary")
         n_skipped = (y_pred == 0).sum()
         skip_rate = n_skipped / len(y_pred)
-        
-        # Time calculations
-        time_saved_minutes = n_skipped * test_time_per_chip
-        time_saved_hours = time_saved_minutes / 60
-        
-        # Scale to production
-        total_chips = n_lots * chips_per_lot
-        total_time_saved_hours = skip_rate * total_chips * test_time_per_chip / 60
-        
-        # Cost calculations
-        cost_saved = total_time_saved_hours * cost_per_hour
-        
+        full_flow_units = early_stage_units + optional_stage_units
+        baseline_units = len(y_pred) * full_flow_units
+        saved_units = n_skipped * optional_stage_units
+
         return {
             'skip_rate': skip_rate,
-            'chips_skipped': n_skipped,
-            'time_saved_hours_sample': time_saved_hours,
-            'time_reduction_percent': skip_rate * 100,
-            'total_lots': n_lots,
-            'total_chips': total_chips,
-            'total_time_saved_hours': total_time_saved_hours,
-            'estimated_cost_saved_eur': cost_saved,
-            'cost_saved_millions': cost_saved / 1e6
+            'chips_skipped': int(n_skipped),
+            'saved_units': float(saved_units),
+            'time_reduction_percent': float(saved_units / baseline_units * 100.0),
+            'baseline_units': float(baseline_units),
+            'actual_units': float(baseline_units - saved_units),
+            'early_stage_units': early_stage_units,
+            'optional_stage_units': optional_stage_units,
         }
     
     def print_report(self):
@@ -245,14 +235,16 @@ class TestTimeEvaluator:
 
 def calculate_production_metrics(flags_df: pd.DataFrame,
                                  test_suite: str,
-                                 test_time_minutes: float = 30.0) -> Dict:
+                                 early_stage_minutes: float = 85.0,
+                                 optional_stage_minutes: float = 15.0) -> Dict:
     """
     Calculate production deployment metrics
     
     Args:
         flags_df: DataFrame with columns [LOT_ID, CHIP_ID, FLAG]
         test_suite: Name of test suite
-        test_time_minutes: Test time per chip
+        early_stage_minutes: Mandatory time per chip
+        optional_stage_minutes: Skippable time per chip
     
     Returns:
         Production metrics dictionary
@@ -262,7 +254,15 @@ def calculate_production_metrics(flags_df: pd.DataFrame,
     tested_chips = (flags_df['FLAG'] == 1).sum()
     
     skip_rate = skipped_chips / total_chips
-    time_saved_hours = skipped_chips * test_time_minutes / 60
+    if early_stage_minutes < 0 or optional_stage_minutes <= 0:
+        raise ValueError(
+            "Require early_stage_minutes >= 0 and optional_stage_minutes > 0"
+        )
+    time_saved_hours = skipped_chips * optional_stage_minutes / 60
+    baseline_minutes = total_chips * (early_stage_minutes + optional_stage_minutes)
+    time_reduction_percent = (
+        skipped_chips * optional_stage_minutes / baseline_minutes * 100.0
+    )
     
     metrics = {
         'test_suite': test_suite,
@@ -271,7 +271,9 @@ def calculate_production_metrics(flags_df: pd.DataFrame,
         'tested_chips': tested_chips,
         'skip_rate': skip_rate,
         'time_saved_hours': time_saved_hours,
-        'time_reduction_percent': skip_rate * 100
+        'time_reduction_percent': time_reduction_percent,
+        'early_stage_minutes': early_stage_minutes,
+        'optional_stage_minutes': optional_stage_minutes,
     }
     
     # Aggregate by lot
@@ -285,50 +287,3 @@ def calculate_production_metrics(flags_df: pd.DataFrame,
         metrics['std_skip_rate_per_lot'] = lot_metrics['skip_rate'].std()
     
     return metrics
-
-
-if __name__ == "__main__":
-    print("=== Test Time Evaluator Example ===\n")
-    
-    # Create synthetic data
-    np.random.seed(42)
-    n_samples = 10000
-    
-    # Simulate 98% pass rate
-    y_true = np.random.choice([0, 1], size=n_samples, p=[0.98, 0.02])
-    
-    # Simulate predictions with some errors
-    y_pred = y_true.copy()
-    # Add 0.5% overreject (FP)
-    overreject_idx = np.random.choice(
-        np.where(y_true == 0)[0], 
-        size=int(0.005 * len(y_true)), 
-        replace=False
-    )
-    y_pred[overreject_idx] = 1
-    
-    # Simulate probabilities
-    y_proba = np.where(y_pred == 1, 
-                       np.random.uniform(0.7, 1.0, n_samples),
-                       np.random.uniform(0.0, 0.3, n_samples))
-    
-    # Evaluate
-    evaluator = TestTimeEvaluator()
-    metrics = evaluator.evaluate(y_true, y_pred, y_proba)
-    evaluator.print_report()
-    
-    # Calculate savings
-    print("\n💰 TIME & COST SAVINGS:")
-    savings = evaluator.calculate_time_savings(
-        y_pred, 
-        test_time_per_chip=30.0,
-        cost_per_hour=100.0,
-        n_lots=400,
-        chips_per_lot=13000
-    )
-    print(f"  Skip Rate:         {savings['skip_rate']:.2%}")
-    print(f"  Time Saved:        {savings['total_time_saved_hours']:.0f} hours")
-    print(f"  Cost Saved:        €{savings['estimated_cost_saved_eur']:,.0f}")
-    print(f"  Cost Saved:        €{savings['cost_saved_millions']:.2f}M")
-    
-    print("\n✓ Evaluation complete!")

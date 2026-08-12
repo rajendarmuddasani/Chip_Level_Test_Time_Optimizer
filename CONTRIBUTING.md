@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing to this chip-level test-time optimization project.
 
-## 🤝 How to Contribute
+## How to Contribute
 
 ### Reporting Issues
 - Use the issue tracker to report bugs
@@ -26,26 +26,26 @@ cd <your-fork>
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Install dependencies
-pip install -r requirements.txt
-
-# Install development dependencies
-pip install pytest black flake8 mypy jupyter
+# Install the tested development lock
+python -m pip install -r requirements.txt
+python -m pip check
 ```
 
 #### Code Style
-- Follow PEP 8 guidelines
-- Use Black for code formatting: `black .`
-- Run linter: `flake8 .`
-- Type hints: Use mypy for type checking
+- Follow the existing repository style.
+- Run the enforced Ruff gate with `make lint` or the equivalent command in `Makefile`.
+- Avoid unrelated formatting churn in legacy utility modules.
 
 #### Testing
 ```bash
-# Import-level smoke check
-python -c "from deployment.generate_flags import FlagGenerator; print('flag generator import ok')"
+# Full tests and coverage floor
+python -m pytest tests -q --cov=benchmark --cov=deployment --cov=models --cov=evaluation --cov=preprocessing --cov-fail-under=60
 
-# Add and run pytest suites as tests are introduced
-pytest
+# Canonical split, artifact, prediction, and claim replay
+python scripts/validate_evidence.py
+
+# Runtime dependency audit
+python -m pip_audit --requirement requirements-runtime.txt
 ```
 
 #### Pull Request Process
@@ -62,7 +62,7 @@ pytest
 - Add docstrings to all functions and classes
 - Include examples in docstrings
 
-## 📋 Development Guidelines
+## Development Guidelines
 
 ### Commit Messages
 ```
@@ -102,18 +102,18 @@ Closes #42
 - [ ] Performance impact considered
 - [ ] Backward compatibility maintained
 
-## 🔒 Security
+## Security
 
 - Never commit credentials, API keys, or sensitive data
 - Use environment variables for configuration
 - Follow OWASP guidelines for data handling
 - Report security issues privately to maintainers
 
-## 📜 License
+## License
 
 By contributing, you agree that your contributions will be licensed under the MIT License.
 
-## 💬 Questions?
+## Questions?
 
 Open an issue with the "question" label or contact the maintainers.
 

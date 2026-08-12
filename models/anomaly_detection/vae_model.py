@@ -9,7 +9,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from typing import Tuple, List
-import numpy as np
 
 
 class VariationalAutoEncoder(nn.Module):
@@ -187,7 +186,8 @@ class VariationalAutoEncoder(nn.Module):
         """
         self.eval()
         with torch.no_grad():
-            recon, _, _ = self.forward(x)
+            mu, _ = self.encode(x)
+            recon = self.decode(mu)
             # Calculate MSE per sample
             error = F.mse_loss(recon, x, reduction='none').mean(dim=1)
         return error

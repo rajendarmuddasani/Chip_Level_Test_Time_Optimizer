@@ -53,7 +53,12 @@ env/
 *.pt
 *.pth
 models/*.pt
-artifacts/
+artifacts/*
+!artifacts/public_v1/
+artifacts/public_v1/*
+!artifacts/public_v1/classifier_state.pt
+!artifacts/public_v1/vae_state.pt
+!artifacts/public_v1/runtime_manifest.json
 models/*.h5
 
 # Data files (large datasets)
@@ -89,6 +94,9 @@ mlflow/
 tmp/
 temp/
 *.tmp
+.coverage
+coverage.xml
+htmlcov/
 
 # OS specific
 Thumbs.db
@@ -96,3 +104,4 @@ Thumbs.db
 
 # Shared dataset directory (WM-811K etc — download separately)
 data_shared/
+pdocs/

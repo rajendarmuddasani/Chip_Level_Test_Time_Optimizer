@@ -1,0 +1,4509 @@
+{
+  "artifact_hashes": {
+    "classifier_state.pt": "52da84b9972d3ede2b3f1860f1c07080dfcb74db03882c120a07d7e696ff5c02",
+    "vae_state.pt": "0fc8a9bb9f9d02cb94d9b56c3a30fc6e4233410ea5e83569640870189ba9d9d2"
+  },
+  "bundle_id": "34118c610bd38ce8434f04df59237f37bf1b2d4f14904fd56e9cc3536e359f73",
+  "confirmation": {
+    "all_components_missed_failures": 2,
+    "classifier_quality": {
+      "brier_score": 0.007221254985779524,
+      "ece_10_bin": 0.01704947648507853,
+      "pr_auc": 0.9900875678061212,
+      "roc_auc": 0.9990824468085105
+    },
+    "component_flag_patterns": {
+      "000": 5265,
+      "001": 78,
+      "010": 21,
+      "011": 8,
+      "100": 341,
+      "101": 44,
+      "110": 58,
+      "111": 185
+    },
+    "component_metrics": {
+      "classifier": {
+        "absolute_escape_rate": 0.0003333333333333333,
+        "cost_model": {
+          "early_stage_units": 85.0,
+          "optional_stage_units": 15.0
+        },
+        "defect_recall": 0.9944444444444445,
+        "escape_rate_upper_95": 0.01738426558650346,
+        "escapees": 2,
+        "f1": 0.7246963562753036,
+        "failed_chips": 360,
+        "mcc": 0.7343391457208103,
+        "overtest": 270,
+        "overtest_rate": 0.047872340425531915,
+        "pass_chips": 5640,
+        "relative_escape_rate": 0.005555555555555556,
+        "skip_rate": 0.8953333333333333,
+        "test_rate": 0.10466666666666667,
+        "time_reduction": 0.1343,
+        "time_reduction_ci_95_percent": [
+          13.30999327035333,
+          13.542418304481563
+        ],
+        "time_reduction_percent": 13.43,
+        "total_chips": 6000,
+        "true_skip": 5370,
+        "true_test": 358
+      },
+      "ensemble": {
+        "absolute_escape_rate": 0.0003333333333333333,
+        "cost_model": {
+          "early_stage_units": 85.0,
+          "optional_stage_units": 15.0
+        },
+        "defect_recall": 0.9944444444444445,
+        "escape_rate_upper_95": 0.01738426558650346,
+        "escapees": 2,
+        "f1": 0.6538812785388128,
+        "failed_chips": 360,
+        "mcc": 0.6719065989319907,
+        "overtest": 377,
+        "overtest_rate": 0.06684397163120567,
+        "pass_chips": 5640,
+        "relative_escape_rate": 0.005555555555555556,
+        "skip_rate": 0.8775,
+        "test_rate": 0.1225,
+        "time_reduction": 0.131625,
+        "time_reduction_ci_95_percent": [
+          13.034425348820388,
+          13.283328536930464
+        ],
+        "time_reduction_percent": 13.1625,
+        "total_chips": 6000,
+        "true_skip": 5263,
+        "true_test": 358
+      },
+      "sigma": {
+        "absolute_escape_rate": 0.023166666666666665,
+        "cost_model": {
+          "early_stage_units": 85.0,
+          "optional_stage_units": 15.0
+        },
+        "defect_recall": 0.6138888888888889,
+        "escape_rate_upper_95": 0.43029463147287295,
+        "escapees": 139,
+        "f1": 0.6548148148148148,
+        "failed_chips": 360,
+        "mcc": 0.6359255146336198,
+        "overtest": 94,
+        "overtest_rate": 0.016666666666666666,
+        "pass_chips": 5640,
+        "relative_escape_rate": 0.3861111111111111,
+        "skip_rate": 0.9475,
+        "test_rate": 0.0525,
+        "time_reduction": 0.142125,
+        "time_reduction_ci_95_percent": [
+          14.123472111441277,
+          14.292938123985232
+        ],
+        "time_reduction_percent": 14.2125,
+        "total_chips": 6000,
+        "true_skip": 5546,
+        "true_test": 221
+      },
+      "vae": {
+        "absolute_escape_rate": 0.02,
+        "cost_model": {
+          "early_stage_units": 85.0,
+          "optional_stage_units": 15.0
+        },
+        "defect_recall": 0.6666666666666666,
+        "escape_rate_upper_95": 0.376511280782097,
+        "escapees": 120,
+        "f1": 0.759493670886076,
+        "failed_chips": 360,
+        "mcc": 0.7545736673856436,
+        "overtest": 32,
+        "overtest_rate": 0.005673758865248227,
+        "pass_chips": 5640,
+        "relative_escape_rate": 0.3333333333333333,
+        "skip_rate": 0.9546666666666667,
+        "test_rate": 0.04533333333333334,
+        "time_reduction": 0.1432,
+        "time_reduction_ci_95_percent": [
+          14.236582656777246,
+          14.394690014449385
+        ],
+        "time_reduction_percent": 14.32,
+        "total_chips": 6000,
+        "true_skip": 5608,
+        "true_test": 240
+      }
+    },
+    "failure_modes": {
+      "leakage_spike": {
+        "captured": 96,
+        "escaped": 0,
+        "recall": 1.0,
+        "support": 96
+      },
+      "resistance_bridge": {
+        "captured": 84,
+        "escaped": 0,
+        "recall": 1.0,
+        "support": 84
+      },
+      "timing_shift": {
+        "captured": 83,
+        "escaped": 1,
+        "recall": 0.9880952380952381,
+        "support": 84
+      },
+      "voltage_drift": {
+        "captured": 95,
+        "escaped": 1,
+        "recall": 0.9895833333333334,
+        "support": 96
+      }
+    },
+    "metrics": {
+      "absolute_escape_rate": 0.0003333333333333333,
+      "cost_model": {
+        "early_stage_units": 85.0,
+        "optional_stage_units": 15.0
+      },
+      "defect_recall": 0.9944444444444445,
+      "escape_rate_upper_95": 0.01738426558650346,
+      "escapees": 2,
+      "f1": 0.6538812785388128,
+      "failed_chips": 360,
+      "mcc": 0.6719065989319907,
+      "overtest": 377,
+      "overtest_rate": 0.06684397163120567,
+      "pass_chips": 5640,
+      "relative_escape_rate": 0.005555555555555556,
+      "skip_rate": 0.8775,
+      "test_rate": 0.1225,
+      "time_reduction": 0.131625,
+      "time_reduction_ci_95_percent": [
+        13.034425348820388,
+        13.283328536930464
+      ],
+      "time_reduction_percent": 13.1625,
+      "total_chips": 6000,
+      "true_skip": 5263,
+      "true_test": 358
+    },
+    "vae_ranking_quality": {
+      "pr_auc": 0.8482958112385985,
+      "roc_auc": 0.9721153467297085
+    }
+  },
+  "dataset_manifest": "evidence/public_synthetic_dataset_manifest.json",
+  "dataset_manifest_sha256": "862da301f6156aa0602d71ecb962c38e0025095cdbce7bfe02c5f934f397abab",
+  "experiment_id": "public_synthetic_hybrid_v1",
+  "ood_challenge": {
+    "all_components_missed_failures": 94,
+    "classifier_quality": {
+      "brier_score": 0.18469646573066711,
+      "ece_10_bin": 0.17928253719117493,
+      "pr_auc": 0.3845816400506755,
+      "roc_auc": 0.718846875
+    },
+    "component_flag_patterns": {
+      "000": 1615,
+      "001": 24,
+      "010": 153,
+      "011": 99,
+      "100": 70,
+      "101": 3,
+      "110": 23,
+      "111": 13
+    },
+    "component_metrics": {
+      "classifier": {
+        "absolute_escape_rate": 0.172,
+        "cost_model": {
+          "early_stage_units": 85.0,
+          "optional_stage_units": 15.0
+        },
+        "defect_recall": 0.14,
+        "escape_rate_upper_95": 0.8877315318361264,
+        "escapees": 344,
+        "f1": 0.2200392927308448,
+        "failed_chips": 400,
+        "mcc": 0.18832462067038405,
+        "overtest": 53,
+        "overtest_rate": 0.033125,
+        "pass_chips": 1600,
+        "relative_escape_rate": 0.86,
+        "skip_rate": 0.9455,
+        "test_rate": 0.0545,
+        "time_reduction": 0.141825,
+        "time_reduction_ci_95_percent": [
+          14.0200540053895,
+          14.319324657696553
+        ],
+        "time_reduction_percent": 14.182500000000001,
+        "total_chips": 2000,
+        "true_skip": 1547,
+        "true_test": 56
+      },
+      "ensemble": {
+        "absolute_escape_rate": 0.047,
+        "cost_model": {
+          "early_stage_units": 85.0,
+          "optional_stage_units": 15.0
+        },
+        "defect_recall": 0.765,
+        "escape_rate_upper_95": 0.27252626797382024,
+        "escapees": 94,
+        "f1": 0.7796178343949045,
+        "failed_chips": 400,
+        "mcc": 0.7260371827615179,
+        "overtest": 79,
+        "overtest_rate": 0.049375,
+        "pass_chips": 1600,
+        "relative_escape_rate": 0.235,
+        "skip_rate": 0.8075,
+        "test_rate": 0.1925,
+        "time_reduction": 0.12112500000000001,
+        "time_reduction_ci_95_percent": [
+          11.844569571027051,
+          12.36274566780339
+        ],
+        "time_reduction_percent": 12.1125,
+        "total_chips": 2000,
+        "true_skip": 1521,
+        "true_test": 306
+      },
+      "sigma": {
+        "absolute_escape_rate": 0.141,
+        "cost_model": {
+          "early_stage_units": 85.0,
+          "optional_stage_units": 15.0
+        },
+        "defect_recall": 0.295,
+        "escape_rate_upper_95": 0.7425348472624944,
+        "escapees": 282,
+        "f1": 0.437847866419295,
+        "failed_chips": 400,
+        "mcc": 0.44336964847148946,
+        "overtest": 21,
+        "overtest_rate": 0.013125,
+        "pass_chips": 1600,
+        "relative_escape_rate": 0.705,
+        "skip_rate": 0.9305,
+        "test_rate": 0.0695,
+        "time_reduction": 0.139575,
+        "time_reduction_ci_95_percent": [
+          13.777646442971081,
+          14.112594891391536
+        ],
+        "time_reduction_percent": 13.9575,
+        "total_chips": 2000,
+        "true_skip": 1579,
+        "true_test": 118
+      },
+      "vae": {
+        "absolute_escape_rate": 0.06,
+        "cost_model": {
+          "early_stage_units": 85.0,
+          "optional_stage_units": 15.0
+        },
+        "defect_recall": 0.7,
+        "escape_rate_upper_95": 0.33996356639687275,
+        "escapees": 120,
+        "f1": 0.813953488372093,
+        "failed_chips": 400,
+        "mcc": 0.7918203654702349,
+        "overtest": 8,
+        "overtest_rate": 0.005,
+        "pass_chips": 1600,
+        "relative_escape_rate": 0.3,
+        "skip_rate": 0.856,
+        "test_rate": 0.144,
+        "time_reduction": 0.1284,
+        "time_reduction_ci_95_percent": [
+          12.59895362422539,
+          13.060572310810828
+        ],
+        "time_reduction_percent": 12.839999999999998,
+        "total_chips": 2000,
+        "true_skip": 1592,
+        "true_test": 280
+      }
+    },
+    "failure_modes": {
+      "novel_coupled_drift": {
+        "captured": 306,
+        "escaped": 94,
+        "recall": 0.765,
+        "support": 400
+      }
+    },
+    "metrics": {
+      "absolute_escape_rate": 0.047,
+      "cost_model": {
+        "early_stage_units": 85.0,
+        "optional_stage_units": 15.0
+      },
+      "defect_recall": 0.765,
+      "escape_rate_upper_95": 0.27252626797382024,
+      "escapees": 94,
+      "f1": 0.7796178343949045,
+      "failed_chips": 400,
+      "mcc": 0.7260371827615179,
+      "overtest": 79,
+      "overtest_rate": 0.049375,
+      "pass_chips": 1600,
+      "relative_escape_rate": 0.235,
+      "skip_rate": 0.8075,
+      "test_rate": 0.1925,
+      "time_reduction": 0.12112500000000001,
+      "time_reduction_ci_95_percent": [
+        11.844569571027051,
+        12.36274566780339
+      ],
+      "time_reduction_percent": 12.1125,
+      "total_chips": 2000,
+      "true_skip": 1521,
+      "true_test": 306
+    },
+    "vae_ranking_quality": {
+      "pr_auc": 0.9437940354545837,
+      "roc_auc": 0.9779828124999999
+    }
+  },
+  "prediction_evidence": {
+    "confirmation": {
+      "canonical_prediction_sha256": "7a906828560e45699a3210e717e730a6629c50f0a0102f467669a41337f4e82f",
+      "per_lot": [
+        {
+          "chips": 500,
+          "escapees": 0,
+          "failures": 30,
+          "lot_id": "CONFIRMATION_LOT_060",
+          "overtest": 35,
+          "skipped": 435,
+          "time_index": 60
+        },
+        {
+          "chips": 500,
+          "escapees": 0,
+          "failures": 30,
+          "lot_id": "CONFIRMATION_LOT_061",
+          "overtest": 35,
+          "skipped": 435,
+          "time_index": 61
+        },
+        {
+          "chips": 500,
+          "escapees": 0,
+          "failures": 30,
+          "lot_id": "CONFIRMATION_LOT_062",
+          "overtest": 43,
+          "skipped": 427,
+          "time_index": 62
+        },
+        {
+          "chips": 500,
+          "escapees": 1,
+          "failures": 30,
+          "lot_id": "CONFIRMATION_LOT_063",
+          "overtest": 29,
+          "skipped": 442,
+          "time_index": 63
+        },
+        {
+          "chips": 500,
+          "escapees": 0,
+          "failures": 30,
+          "lot_id": "CONFIRMATION_LOT_064",
+          "overtest": 21,
+          "skipped": 449,
+          "time_index": 64
+        },
+        {
+          "chips": 500,
+          "escapees": 0,
+          "failures": 30,
+          "lot_id": "CONFIRMATION_LOT_065",
+          "overtest": 35,
+          "skipped": 435,
+          "time_index": 65
+        },
+        {
+          "chips": 500,
+          "escapees": 1,
+          "failures": 30,
+          "lot_id": "CONFIRMATION_LOT_066",
+          "overtest": 29,
+          "skipped": 442,
+          "time_index": 66
+        },
+        {
+          "chips": 500,
+          "escapees": 0,
+          "failures": 30,
+          "lot_id": "CONFIRMATION_LOT_067",
+          "overtest": 28,
+          "skipped": 442,
+          "time_index": 67
+        },
+        {
+          "chips": 500,
+          "escapees": 0,
+          "failures": 30,
+          "lot_id": "CONFIRMATION_LOT_068",
+          "overtest": 27,
+          "skipped": 443,
+          "time_index": 68
+        },
+        {
+          "chips": 500,
+          "escapees": 0,
+          "failures": 30,
+          "lot_id": "CONFIRMATION_LOT_069",
+          "overtest": 30,
+          "skipped": 440,
+          "time_index": 69
+        },
+        {
+          "chips": 500,
+          "escapees": 0,
+          "failures": 30,
+          "lot_id": "CONFIRMATION_LOT_070",
+          "overtest": 34,
+          "skipped": 436,
+          "time_index": 70
+        },
+        {
+          "chips": 500,
+          "escapees": 0,
+          "failures": 30,
+          "lot_id": "CONFIRMATION_LOT_071",
+          "overtest": 31,
+          "skipped": 439,
+          "time_index": 71
+        }
+      ],
+      "row_count": 6000
+    },
+    "ood_challenge": {
+      "canonical_prediction_sha256": "70635086551c18b66ff3cb986b4db40af651ebe64a5299e429708dfb49bc3642",
+      "per_lot": [
+        {
+          "chips": 500,
+          "escapees": 26,
+          "failures": 100,
+          "lot_id": "OOD_CHALLENGE_LOT_080",
+          "overtest": 29,
+          "skipped": 397,
+          "time_index": 80
+        },
+        {
+          "chips": 500,
+          "escapees": 28,
+          "failures": 100,
+          "lot_id": "OOD_CHALLENGE_LOT_081",
+          "overtest": 15,
+          "skipped": 413,
+          "time_index": 81
+        },
+        {
+          "chips": 500,
+          "escapees": 17,
+          "failures": 100,
+          "lot_id": "OOD_CHALLENGE_LOT_082",
+          "overtest": 13,
+          "skipped": 404,
+          "time_index": 82
+        },
+        {
+          "chips": 500,
+          "escapees": 23,
+          "failures": 100,
+          "lot_id": "OOD_CHALLENGE_LOT_083",
+          "overtest": 22,
+          "skipped": 401,
+          "time_index": 83
+        }
+      ],
+      "row_count": 2000
+    }
+  },
+  "reproducibility": {
+    "base_commit_sha": "8d59cd3e60b6d57efbf5454c8a3bc75ab3e9e721",
+    "command": "python scripts/run_public_benchmark.py",
+    "device": "cpu",
+    "numpy": "2.3.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
+    "python": "3.12.10",
+    "recorded_at_utc": "2026-08-07T11:41:17.570145+00:00",
+    "source_hashes": {
+      "experiment.py": "4ebcee5aa9d0472229ac167642d2178bb56b22031bafec48b550c684041ab823",
+      "policy_metrics.py": "1ee389f6ca3f82fc48fcd310198966d7a8d5a77d48364bbf36eafa09a17db126",
+      "synthetic_data.py": "c143755f5fdcef03f5fa2bfd3958da24dbae107be94f2659fbcdd1de824b2d3f"
+    },
+    "torch": "2.11.0+cpu"
+  },
+  "schema_version": 1,
+  "selection_protocol": {
+    "confirmation_used_for_selection": false,
+    "cost_model": {
+      "early_stage_units": 85.0,
+      "optional_stage_units": 15.0
+    },
+    "eligible_policy_family": "hybrid_or",
+    "objective": "maximize validation time reduction subject to every safety gate",
+    "ood_challenge_used_for_selection": false,
+    "safety_gates": {
+      "maximum_escape_rate_upper_95": 0.015,
+      "maximum_observed_escapees": 0,
+      "maximum_overtest_rate": 0.2
+    },
+    "tie_breakers": [
+      "lower validation overtest rate",
+      "candidate name"
+    ]
+  },
+  "training": {
+    "classifier": {
+      "best_validation_loss": 0.04532216489315033,
+      "duration_seconds": 6.284694500005571,
+      "epochs_completed": 35,
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.6173999066352844,
+          "validation_loss": 0.5571500658988953
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.5129473176002503,
+          "validation_loss": 0.44661757349967957
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.41167051911354063,
+          "validation_loss": 0.3498021364212036
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.33121618151664733,
+          "validation_loss": 0.2803818881511688
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.27320345187187195,
+          "validation_loss": 0.23455606400966644
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.23443300998210906,
+          "validation_loss": 0.20250345766544342
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.20570933783054351,
+          "validation_loss": 0.17979735136032104
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.1836326847076416,
+          "validation_loss": 0.1618577092885971
+        },
+        {
+          "epoch": 9,
+          "train_loss": 0.16502241051197053,
+          "validation_loss": 0.14561419188976288
+        },
+        {
+          "epoch": 10,
+          "train_loss": 0.1512851632833481,
+          "validation_loss": 0.13363505899906158
+        },
+        {
+          "epoch": 11,
+          "train_loss": 0.13827829110622405,
+          "validation_loss": 0.1210782453417778
+        },
+        {
+          "epoch": 12,
+          "train_loss": 0.12960695153474808,
+          "validation_loss": 0.11145104467868805
+        },
+        {
+          "epoch": 13,
+          "train_loss": 0.11680731290578843,
+          "validation_loss": 0.10344106703996658
+        },
+        {
+          "epoch": 14,
+          "train_loss": 0.11030815452337266,
+          "validation_loss": 0.0959317535161972
+        },
+        {
+          "epoch": 15,
+          "train_loss": 0.10400045752525329,
+          "validation_loss": 0.09039390832185745
+        },
+        {
+          "epoch": 16,
+          "train_loss": 0.09606087470054626,
+          "validation_loss": 0.08338923007249832
+        },
+        {
+          "epoch": 17,
+          "train_loss": 0.08891129475831985,
+          "validation_loss": 0.07652109861373901
+        },
+        {
+          "epoch": 18,
+          "train_loss": 0.08267579281330109,
+          "validation_loss": 0.07423510402441025
+        },
+        {
+          "epoch": 19,
+          "train_loss": 0.0788446654677391,
+          "validation_loss": 0.07045005261898041
+        },
+        {
+          "epoch": 20,
+          "train_loss": 0.07989126735925675,
+          "validation_loss": 0.06709972023963928
+        },
+        {
+          "epoch": 21,
+          "train_loss": 0.0744060825407505,
+          "validation_loss": 0.06311739981174469
+        },
+        {
+          "epoch": 22,
+          "train_loss": 0.07126913976669312,
+          "validation_loss": 0.062185462564229965
+        },
+        {
+          "epoch": 23,
+          "train_loss": 0.06768863826990128,
+          "validation_loss": 0.05855089798569679
+        },
+        {
+          "epoch": 24,
+          "train_loss": 0.06223782870173454,
+          "validation_loss": 0.05778984725475311
+        },
+        {
+          "epoch": 25,
+          "train_loss": 0.06159294068813324,
+          "validation_loss": 0.05618029832839966
+        },
+        {
+          "epoch": 26,
+          "train_loss": 0.05503212201595306,
+          "validation_loss": 0.05453948304057121
+        },
+        {
+          "epoch": 27,
+          "train_loss": 0.05898441404104233,
+          "validation_loss": 0.052830759435892105
+        },
+        {
+          "epoch": 28,
+          "train_loss": 0.05946901965141296,
+          "validation_loss": 0.0527731291949749
+        },
+        {
+          "epoch": 29,
+          "train_loss": 0.05689900001883507,
+          "validation_loss": 0.05142948031425476
+        },
+        {
+          "epoch": 30,
+          "train_loss": 0.05962832525372505,
+          "validation_loss": 0.050113365054130554
+        },
+        {
+          "epoch": 31,
+          "train_loss": 0.05116744977235794,
+          "validation_loss": 0.05051938444375992
+        },
+        {
+          "epoch": 32,
+          "train_loss": 0.04710391932725906,
+          "validation_loss": 0.04981936514377594
+        },
+        {
+          "epoch": 33,
+          "train_loss": 0.04484203687310219,
+          "validation_loss": 0.04839665815234184
+        },
+        {
+          "epoch": 34,
+          "train_loss": 0.04674187731742859,
+          "validation_loss": 0.04618494212627411
+        },
+        {
+          "epoch": 35,
+          "train_loss": 0.04775602953135967,
+          "validation_loss": 0.04532216489315033
+        }
+      ]
+    },
+    "sigma_variants": {
+      "sigma_tail_0.00010": {
+        "feature_rule_count": 32,
+        "target_fail_count_per_tail": 2
+      },
+      "sigma_tail_0.00025": {
+        "feature_rule_count": 32,
+        "target_fail_count_per_tail": 4
+      },
+      "sigma_tail_0.00050": {
+        "feature_rule_count": 32,
+        "target_fail_count_per_tail": 8
+      }
+    },
+    "vae": {
+      "best_validation_loss": 0.5211319923400879,
+      "duration_seconds": 5.27020579999953,
+      "epochs_completed": 35,
+      "history": [
+        {
+          "epoch": 1,
+          "train_loss": 0.6240806539007958,
+          "validation_loss": 0.5583091974258423
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.5821367796431196,
+          "validation_loss": 0.5481616258621216
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.5626768556046993,
+          "validation_loss": 0.5419630408287048
+        },
+        {
+          "epoch": 4,
+          "train_loss": 0.5522018980472646,
+          "validation_loss": 0.5377545356750488
+        },
+        {
+          "epoch": 5,
+          "train_loss": 0.5458504197445322,
+          "validation_loss": 0.5350192189216614
+        },
+        {
+          "epoch": 6,
+          "train_loss": 0.5426073939242262,
+          "validation_loss": 0.5333133935928345
+        },
+        {
+          "epoch": 7,
+          "train_loss": 0.5408354992562152,
+          "validation_loss": 0.5323395729064941
+        },
+        {
+          "epoch": 8,
+          "train_loss": 0.5394664389021853,
+          "validation_loss": 0.5316853523254395
+        },
+        {
+          "epoch": 9,
+          "train_loss": 0.5386607991888168,
+          "validation_loss": 0.531001627445221
+        },
+        {
+          "epoch": 10,
+          "train_loss": 0.5383259643899634,
+          "validation_loss": 0.5305449962615967
+        },
+        {
+          "epoch": 11,
+          "train_loss": 0.5378602428639189,
+          "validation_loss": 0.5301457047462463
+        },
+        {
+          "epoch": 12,
+          "train_loss": 0.5375049459173324,
+          "validation_loss": 0.5297024846076965
+        },
+        {
+          "epoch": 13,
+          "train_loss": 0.5371265099403706,
+          "validation_loss": 0.5295323729515076
+        },
+        {
+          "epoch": 14,
+          "train_loss": 0.5369295173502983,
+          "validation_loss": 0.5289928913116455
+        },
+        {
+          "epoch": 15,
+          "train_loss": 0.5367013999756346,
+          "validation_loss": 0.5287566184997559
+        },
+        {
+          "epoch": 16,
+          "train_loss": 0.5364174916389141,
+          "validation_loss": 0.528436005115509
+        },
+        {
+          "epoch": 17,
+          "train_loss": 0.5364264295456257,
+          "validation_loss": 0.5283398032188416
+        },
+        {
+          "epoch": 18,
+          "train_loss": 0.536225964921586,
+          "validation_loss": 0.5280563235282898
+        },
+        {
+          "epoch": 19,
+          "train_loss": 0.5361406422675924,
+          "validation_loss": 0.527769148349762
+        },
+        {
+          "epoch": 20,
+          "train_loss": 0.5360369159820232,
+          "validation_loss": 0.5276246666908264
+        },
+        {
+          "epoch": 21,
+          "train_loss": 0.5359347921736697,
+          "validation_loss": 0.5274420380592346
+        },
+        {
+          "epoch": 22,
+          "train_loss": 0.5358076985846174,
+          "validation_loss": 0.5269986987113953
+        },
+        {
+          "epoch": 23,
+          "train_loss": 0.5355912751339852,
+          "validation_loss": 0.5267038345336914
+        },
+        {
+          "epoch": 24,
+          "train_loss": 0.5353474150312708,
+          "validation_loss": 0.5262972712516785
+        },
+        {
+          "epoch": 25,
+          "train_loss": 0.5352457404136658,
+          "validation_loss": 0.5259366035461426
+        },
+        {
+          "epoch": 26,
+          "train_loss": 0.5350501590586724,
+          "validation_loss": 0.5254346132278442
+        },
+        {
+          "epoch": 27,
+          "train_loss": 0.5354732865982867,
+          "validation_loss": 0.5251844525337219
+        },
+        {
+          "epoch": 28,
+          "train_loss": 0.5346829594449795,
+          "validation_loss": 0.5246524214744568
+        },
+        {
+          "epoch": 29,
+          "train_loss": 0.5348194485015058,
+          "validation_loss": 0.5243279933929443
+        },
+        {
+          "epoch": 30,
+          "train_loss": 0.5344863219464079,
+          "validation_loss": 0.5237637758255005
+        },
+        {
+          "epoch": 31,
+          "train_loss": 0.5344825019227698,
+          "validation_loss": 0.5234224200248718
+        },
+        {
+          "epoch": 32,
+          "train_loss": 0.5343931880403072,
+          "validation_loss": 0.5228389501571655
+        },
+        {
+          "epoch": 33,
+          "train_loss": 0.5337891708029078,
+          "validation_loss": 0.522122323513031
+        },
+        {
+          "epoch": 34,
+          "train_loss": 0.5337264535274912,
+          "validation_loss": 0.5214360952377319
+        },
+        {
+          "epoch": 35,
+          "train_loss": 0.5338173569516933,
+          "validation_loss": 0.5211319923400879
+        }
+      ]
+    },
+    "vae_thresholds": {
+      "vae_q975": 0.7926486134529114,
+      "vae_q990": 0.855223536491394,
+      "vae_q995": 0.9061563611030579
+    }
+  },
+  "training_config": {
+    "batch_size": 512,
+    "classifier_dropout": 0.15,
+    "classifier_epochs": 35,
+    "classifier_hidden_size": 24,
+    "classifier_learning_rate": 0.001,
+    "classifier_patience": 6,
+    "classifier_thresholds": [
+      0.05,
+      0.1,
+      0.2,
+      0.35,
+      0.5,
+      0.65
+    ],
+    "cost_model": {
+      "early_stage_units": 85.0,
+      "optional_stage_units": 15.0
+    },
+    "safety_gates": {
+      "maximum_escape_rate_upper_95": 0.015,
+      "maximum_observed_escapees": 0,
+      "maximum_overtest_rate": 0.2
+    },
+    "seed": 20260807,
+    "sigma_tail_rates": [
+      0.0001,
+      0.00025,
+      0.0005
+    ],
+    "torch_threads": 4,
+    "vae_beta": 0.02,
+    "vae_epochs": 35,
+    "vae_latent_size": 4,
+    "vae_learning_rate": 0.001,
+    "vae_num_layers": 3,
+    "vae_patience": 6,
+    "vae_quantiles": [
+      0.975,
+      0.99,
+      0.995
+    ]
+  },
+  "validation": {
+    "candidate_count": 67,
+    "candidates": [
+      {
+        "configuration": {
+          "always_test": true
+        },
+        "eligible_for_selection": false,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": false
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.11320754716981132,
+          "failed_chips": 240,
+          "mcc": 0.0,
+          "overtest": 3760,
+          "overtest_rate": 1.0,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.0,
+          "test_rate": 1.0,
+          "time_reduction": 0.0,
+          "time_reduction_ci_95_percent": [
+            8.131516293641283e-19,
+            0.01439164934552229
+          ],
+          "time_reduction_percent": 0.0,
+          "total_chips": 4000,
+          "true_skip": 0,
+          "true_test": 240
+        },
+        "name": "all_test_baseline",
+        "policy_family": "baseline"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.05
+        },
+        "eligible_for_selection": false,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.5510907003444316,
+          "failed_chips": 240,
+          "mcc": 0.5837777310665477,
+          "overtest": 391,
+          "overtest_rate": 0.10398936170212766,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.84225,
+          "test_rate": 0.15775,
+          "time_reduction": 0.12633750000000002,
+          "time_reduction_ci_95_percent": [
+            12.459394694315439,
+            12.798254221707554
+          ],
+          "time_reduction_percent": 12.633750000000003,
+          "total_chips": 4000,
+          "true_skip": 3369,
+          "true_test": 240
+        },
+        "name": "classifier_t0.05",
+        "policy_family": "classifier_ablation"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.1
+        },
+        "eligible_for_selection": false,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.6722689075630253,
+          "failed_chips": 240,
+          "mcc": 0.6890705379728418,
+          "overtest": 234,
+          "overtest_rate": 0.06223404255319149,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.8815,
+          "test_rate": 0.1185,
+          "time_reduction": 0.132225,
+          "time_reduction_ci_95_percent": [
+            13.066743374370727,
+            13.36727579717864
+          ],
+          "time_reduction_percent": 13.2225,
+          "total_chips": 4000,
+          "true_skip": 3526,
+          "true_test": 240
+        },
+        "name": "classifier_t0.10",
+        "policy_family": "classifier_ablation"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.2
+        },
+        "eligible_for_selection": false,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0005,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9916666666666667,
+          "escape_rate_upper_95": 0.02599868808703558,
+          "escapees": 2,
+          "f1": 0.7854785478547854,
+          "failed_chips": 240,
+          "mcc": 0.7887903928521215,
+          "overtest": 128,
+          "overtest_rate": 0.03404255319148936,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.008333333333333333,
+          "skip_rate": 0.9085,
+          "test_rate": 0.0915,
+          "time_reduction": 0.136275,
+          "time_reduction_ci_95_percent": [
+            13.487532443713105,
+            13.755709578771603
+          ],
+          "time_reduction_percent": 13.627500000000001,
+          "total_chips": 4000,
+          "true_skip": 3632,
+          "true_test": 238
+        },
+        "name": "classifier_t0.20",
+        "policy_family": "classifier_ablation"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.35
+        },
+        "eligible_for_selection": false,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00075,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9875,
+          "escape_rate_upper_95": 0.03198819975403925,
+          "escapees": 3,
+          "f1": 0.864963503649635,
+          "failed_chips": 240,
+          "mcc": 0.8628701303156178,
+          "overtest": 71,
+          "overtest_rate": 0.018882978723404255,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0125,
+          "skip_rate": 0.923,
+          "test_rate": 0.077,
+          "time_reduction": 0.13845000000000002,
+          "time_reduction_ci_95_percent": [
+            13.714898247008955,
+            13.962926417644736
+          ],
+          "time_reduction_percent": 13.845000000000002,
+          "total_chips": 4000,
+          "true_skip": 3689,
+          "true_test": 237
+        },
+        "name": "classifier_t0.35",
+        "policy_family": "classifier_ablation"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.5
+        },
+        "eligible_for_selection": false,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.001,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9833333333333333,
+          "escape_rate_upper_95": 0.03773161324718266,
+          "escapees": 4,
+          "f1": 0.921875,
+          "failed_chips": 240,
+          "mcc": 0.9186044904019105,
+          "overtest": 36,
+          "overtest_rate": 0.009574468085106383,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.016666666666666666,
+          "skip_rate": 0.932,
+          "test_rate": 0.068,
+          "time_reduction": 0.1398,
+          "time_reduction_ci_95_percent": [
+            13.85665069823585,
+            14.090914916729618
+          ],
+          "time_reduction_percent": 13.98,
+          "total_chips": 4000,
+          "true_skip": 3724,
+          "true_test": 236
+        },
+        "name": "classifier_t0.50",
+        "policy_family": "classifier_ablation"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.65
+        },
+        "eligible_for_selection": false,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00125,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9791666666666666,
+          "escape_rate_upper_95": 0.04330273364488167,
+          "escapees": 5,
+          "f1": 0.9572301425661914,
+          "failed_chips": 240,
+          "mcc": 0.9547069580375809,
+          "overtest": 16,
+          "overtest_rate": 0.00425531914893617,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.020833333333333332,
+          "skip_rate": 0.93725,
+          "test_rate": 0.06275,
+          "time_reduction": 0.1405875,
+          "time_reduction_ci_95_percent": [
+            13.939604611342432,
+            14.165309891304908
+          ],
+          "time_reduction_percent": 14.05875,
+          "total_chips": 4000,
+          "true_skip": 3744,
+          "true_test": 235
+        },
+        "name": "classifier_t0.65",
+        "policy_family": "classifier_ablation"
+      },
+      {
+        "configuration": {
+          "vae_threshold": 0.7926486134529114
+        },
+        "eligible_for_selection": false,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.01025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.8291666666666667,
+          "escape_rate_upper_95": 0.2158765894388784,
+          "escapees": 41,
+          "f1": 0.7509433962264151,
+          "failed_chips": 240,
+          "mcc": 0.7372085075595203,
+          "overtest": 91,
+          "overtest_rate": 0.02420212765957447,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.17083333333333334,
+          "skip_rate": 0.9275,
+          "test_rate": 0.0725,
+          "time_reduction": 0.139125,
+          "time_reduction_ci_95_percent": [
+            13.78570728038157,
+            14.026987859428008
+          ],
+          "time_reduction_percent": 13.9125,
+          "total_chips": 4000,
+          "true_skip": 3669,
+          "true_test": 199
+        },
+        "name": "vae_q975",
+        "policy_family": "vae_ablation"
+      },
+      {
+        "configuration": {
+          "vae_threshold": 0.855223536491394
+        },
+        "eligible_for_selection": false,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0165,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.725,
+          "escape_rate_upper_95": 0.32642004473673253,
+          "escapees": 66,
+          "f1": 0.7767857142857143,
+          "failed_chips": 240,
+          "mcc": 0.7658098043278969,
+          "overtest": 34,
+          "overtest_rate": 0.009042553191489361,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.275,
+          "skip_rate": 0.948,
+          "test_rate": 0.052,
+          "time_reduction": 0.1422,
+          "time_reduction_ci_95_percent": [
+            14.110192341217202,
+            14.316912740969212
+          ],
+          "time_reduction_percent": 14.219999999999999,
+          "total_chips": 4000,
+          "true_skip": 3726,
+          "true_test": 174
+        },
+        "name": "vae_q990",
+        "policy_family": "vae_ablation"
+      },
+      {
+        "configuration": {
+          "vae_threshold": 0.9061563611030579
+        },
+        "eligible_for_selection": false,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.02075,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.6541666666666667,
+          "escape_rate_upper_95": 0.3996526199407962,
+          "escapees": 83,
+          "f1": 0.7566265060240964,
+          "failed_chips": 240,
+          "mcc": 0.7539860809705065,
+          "overtest": 18,
+          "overtest_rate": 0.0047872340425531915,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.3458333333333333,
+          "skip_rate": 0.95625,
+          "test_rate": 0.04375,
+          "time_reduction": 0.1434375,
+          "time_reduction_ci_95_percent": [
+            14.241923970654852,
+            14.432443649317362
+          ],
+          "time_reduction_percent": 14.34375,
+          "total_chips": 4000,
+          "true_skip": 3742,
+          "true_test": 157
+        },
+        "name": "vae_q995",
+        "policy_family": "vae_ablation"
+      },
+      {
+        "configuration": {
+          "sigma_variant": "sigma_tail_0.00010"
+        },
+        "eligible_for_selection": false,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.02525,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.5791666666666667,
+          "escape_rate_upper_95": 0.4758533299958363,
+          "escapees": 101,
+          "f1": 0.6541176470588236,
+          "failed_chips": 240,
+          "mcc": 0.6410587865536062,
+          "overtest": 46,
+          "overtest_rate": 0.01223404255319149,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.42083333333333334,
+          "skip_rate": 0.95375,
+          "test_rate": 0.04625,
+          "time_reduction": 0.1430625,
+          "time_reduction_ci_95_percent": [
+            14.201918557898875,
+            14.397521020320067
+          ],
+          "time_reduction_percent": 14.30625,
+          "total_chips": 4000,
+          "true_skip": 3714,
+          "true_test": 139
+        },
+        "name": "sigma_tail_0.00010",
+        "policy_family": "sigma_ablation"
+      },
+      {
+        "configuration": {
+          "sigma_variant": "sigma_tail_0.00025"
+        },
+        "eligible_for_selection": false,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0225,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.625,
+          "escape_rate_upper_95": 0.42943973982758915,
+          "escapees": 90,
+          "f1": 0.6382978723404256,
+          "failed_chips": 240,
+          "mcc": 0.6158897302986331,
+          "overtest": 80,
+          "overtest_rate": 0.02127659574468085,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.375,
+          "skip_rate": 0.9425,
+          "test_rate": 0.0575,
+          "time_reduction": 0.141375,
+          "time_reduction_ci_95_percent": [
+            14.022782181980375,
+            14.23948120834884
+          ],
+          "time_reduction_percent": 14.1375,
+          "total_chips": 4000,
+          "true_skip": 3680,
+          "true_test": 150
+        },
+        "name": "sigma_tail_0.00025",
+        "policy_family": "sigma_ablation"
+      },
+      {
+        "configuration": {
+          "sigma_variant": "sigma_tail_0.00050"
+        },
+        "eligible_for_selection": false,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.01825,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.6958333333333333,
+          "escape_rate_upper_95": 0.3567364353529668,
+          "escapees": 73,
+          "f1": 0.6196660482374768,
+          "failed_chips": 240,
+          "mcc": 0.5966593191316222,
+          "overtest": 132,
+          "overtest_rate": 0.035106382978723406,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.30416666666666664,
+          "skip_rate": 0.92525,
+          "test_rate": 0.07475,
+          "time_reduction": 0.1387875,
+          "time_reduction_ci_95_percent": [
+            13.75028667085871,
+            13.994973231372922
+          ],
+          "time_reduction_percent": 13.87875,
+          "total_chips": 4000,
+          "true_skip": 3628,
+          "true_test": 167
+        },
+        "name": "sigma_tail_0.00050",
+        "policy_family": "sigma_ablation"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.05,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.49433573635427397,
+          "failed_chips": 240,
+          "mcc": 0.5342696082692949,
+          "overtest": 491,
+          "overtest_rate": 0.1305851063829787,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.81725,
+          "test_rate": 0.18275,
+          "time_reduction": 0.12258750000000002,
+          "time_reduction_ci_95_percent": [
+            12.074567254723622,
+            12.433801243766647
+          ],
+          "time_reduction_percent": 12.258750000000001,
+          "total_chips": 4000,
+          "true_skip": 3269,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.05_vae_q975_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.05,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.4824120603015075,
+          "failed_chips": 240,
+          "mcc": 0.5237759740190079,
+          "overtest": 515,
+          "overtest_rate": 0.13696808510638298,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.81125,
+          "test_rate": 0.18875,
+          "time_reduction": 0.1216875,
+          "time_reduction_ci_95_percent": [
+            11.9824037596177,
+            12.346137438664714
+          ],
+          "time_reduction_percent": 12.168750000000001,
+          "total_chips": 4000,
+          "true_skip": 3245,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.05_vae_q975_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.05,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.463768115942029,
+          "failed_chips": 240,
+          "mcc": 0.5072734715612668,
+          "overtest": 555,
+          "overtest_rate": 0.14760638297872342,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.80125,
+          "test_rate": 0.19875,
+          "time_reduction": 0.1201875,
+          "time_reduction_ci_95_percent": [
+            11.8289515503437,
+            12.199877480925625
+          ],
+          "time_reduction_percent": 12.01875,
+          "total_chips": 4000,
+          "true_skip": 3205,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.05_vae_q975_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.05,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.5161290322580645,
+          "failed_chips": 240,
+          "mcc": 0.553351574360608,
+          "overtest": 450,
+          "overtest_rate": 0.1196808510638298,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.8275,
+          "test_rate": 0.1725,
+          "time_reduction": 0.124125,
+          "time_reduction_ci_95_percent": [
+            12.232182108441151,
+            12.583391361237531
+          ],
+          "time_reduction_percent": 12.4125,
+          "total_chips": 4000,
+          "true_skip": 3310,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.05_vae_q990_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.05,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.5015673981191222,
+          "failed_chips": 240,
+          "mcc": 0.5406143407241426,
+          "overtest": 477,
+          "overtest_rate": 0.12686170212765957,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.82075,
+          "test_rate": 0.17925,
+          "time_reduction": 0.1231125,
+          "time_reduction_ci_95_percent": [
+            12.128362515309087,
+            12.48490524163576
+          ],
+          "time_reduction_percent": 12.31125,
+          "total_chips": 4000,
+          "true_skip": 3283,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.05_vae_q990_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.05,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.47952047952047955,
+          "failed_chips": 240,
+          "mcc": 0.5212245271364843,
+          "overtest": 521,
+          "overtest_rate": 0.13856382978723406,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.80975,
+          "test_rate": 0.19025,
+          "time_reduction": 0.1214625,
+          "time_reduction_ci_95_percent": [
+            11.95937387145233,
+            12.324210501778118
+          ],
+          "time_reduction_percent": 12.14625,
+          "total_chips": 4000,
+          "true_skip": 3239,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.05_vae_q990_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.05,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.5228758169934641,
+          "failed_chips": 240,
+          "mcc": 0.5592379892326851,
+          "overtest": 438,
+          "overtest_rate": 0.11648936170212766,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.8305,
+          "test_rate": 0.1695,
+          "time_reduction": 0.12457499999999999,
+          "time_reduction_ci_95_percent": [
+            12.278355323678653,
+            12.627131796103958
+          ],
+          "time_reduction_percent": 12.4575,
+          "total_chips": 4000,
+          "true_skip": 3322,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.05_vae_q995_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.05,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.5079365079365079,
+          "failed_chips": 240,
+          "mcc": 0.5461913894890824,
+          "overtest": 465,
+          "overtest_rate": 0.12367021276595745,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.82375,
+          "test_rate": 0.17625,
+          "time_reduction": 0.12356249999999999,
+          "time_reduction_ci_95_percent": [
+            12.174492748765836,
+            12.528688658282935
+          ],
+          "time_reduction_percent": 12.35625,
+          "total_chips": 4000,
+          "true_skip": 3295,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.05_vae_q995_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.05,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.4843592330978809,
+          "failed_chips": 240,
+          "mcc": 0.5254925768902133,
+          "overtest": 511,
+          "overtest_rate": 0.13590425531914893,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.81225,
+          "test_rate": 0.18775,
+          "time_reduction": 0.1218375,
+          "time_reduction_ci_95_percent": [
+            11.997759434636757,
+            12.360752980346966
+          ],
+          "time_reduction_percent": 12.18375,
+          "total_chips": 4000,
+          "true_skip": 3249,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.05_vae_q995_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.1,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.5853658536585366,
+          "failed_chips": 240,
+          "mcc": 0.6134946144557839,
+          "overtest": 340,
+          "overtest_rate": 0.09042553191489362,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.855,
+          "test_rate": 0.145,
+          "time_reduction": 0.12825,
+          "time_reduction_ci_95_percent": [
+            12.656216980116811,
+            12.98356494884787
+          ],
+          "time_reduction_percent": 12.825000000000001,
+          "total_chips": 4000,
+          "true_skip": 3420,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.10_vae_q975_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.1,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.5687203791469194,
+          "failed_chips": 240,
+          "mcc": 0.5990693077666065,
+          "overtest": 364,
+          "overtest_rate": 0.09680851063829787,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.849,
+          "test_rate": 0.151,
+          "time_reduction": 0.12735,
+          "time_reduction_ci_95_percent": [
+            12.563543684400717,
+            12.896410944356107
+          ],
+          "time_reduction_percent": 12.735,
+          "total_chips": 4000,
+          "true_skip": 3396,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.10_vae_q975_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.1,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.5411499436302142,
+          "failed_chips": 240,
+          "mcc": 0.5751436573393277,
+          "overtest": 407,
+          "overtest_rate": 0.10824468085106383,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.83825,
+          "test_rate": 0.16175,
+          "time_reduction": 0.1257375,
+          "time_reduction_ci_95_percent": [
+            12.397728607788158,
+            12.740035441429598
+          ],
+          "time_reduction_percent": 12.57375,
+          "total_chips": 4000,
+          "true_skip": 3353,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.10_vae_q975_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.1,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.6177606177606177,
+          "failed_chips": 240,
+          "mcc": 0.6415799765254357,
+          "overtest": 297,
+          "overtest_rate": 0.07898936170212766,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.86575,
+          "test_rate": 0.13425,
+          "time_reduction": 0.1298625,
+          "time_reduction_ci_95_percent": [
+            12.822499135045426,
+            13.139473373458326
+          ],
+          "time_reduction_percent": 12.986249999999998,
+          "total_chips": 4000,
+          "true_skip": 3463,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.10_vae_q990_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.1,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.5970149253731343,
+          "failed_chips": 240,
+          "mcc": 0.6235893995639508,
+          "overtest": 324,
+          "overtest_rate": 0.08617021276595745,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.859,
+          "test_rate": 0.141,
+          "time_reduction": 0.12885,
+          "time_reduction_ci_95_percent": [
+            12.718051982284711,
+            13.041614813485205
+          ],
+          "time_reduction_percent": 12.885,
+          "total_chips": 4000,
+          "true_skip": 3436,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.10_vae_q990_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.1,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.564042303172738,
+          "failed_chips": 240,
+          "mcc": 0.5950135799192579,
+          "overtest": 371,
+          "overtest_rate": 0.09867021276595744,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.84725,
+          "test_rate": 0.15275,
+          "time_reduction": 0.1270875,
+          "time_reduction_ci_95_percent": [
+            12.536531296850658,
+            12.870973702678876
+          ],
+          "time_reduction_percent": 12.708749999999998,
+          "total_chips": 4000,
+          "true_skip": 3389,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.10_vae_q990_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.1,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.6274509803921569,
+          "failed_chips": 240,
+          "mcc": 0.6499941547551066,
+          "overtest": 285,
+          "overtest_rate": 0.07579787234042554,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.86875,
+          "test_rate": 0.13125,
+          "time_reduction": 0.1303125,
+          "time_reduction_ci_95_percent": [
+            12.86896236917568,
+            13.182923789432
+          ],
+          "time_reduction_percent": 13.03125,
+          "total_chips": 4000,
+          "true_skip": 3475,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.10_vae_q995_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.1,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.6060606060606061,
+          "failed_chips": 240,
+          "mcc": 0.6314308377547894,
+          "overtest": 312,
+          "overtest_rate": 0.08297872340425531,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.862,
+          "test_rate": 0.138,
+          "time_reduction": 0.1293,
+          "time_reduction_ci_95_percent": [
+            12.76445701561468,
+            13.08512343025916
+          ],
+          "time_reduction_percent": 12.93,
+          "total_chips": 4000,
+          "true_skip": 3448,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.10_vae_q995_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.1,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": true,
+            "observed_escapees": true,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": true
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 1.0,
+          "escape_rate_upper_95": 0.012404638050409015,
+          "escapees": 0,
+          "f1": 0.5707491082045184,
+          "failed_chips": 240,
+          "mcc": 0.6008278354634863,
+          "overtest": 361,
+          "overtest_rate": 0.09601063829787235,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0,
+          "skip_rate": 0.84975,
+          "test_rate": 0.15025,
+          "time_reduction": 0.1274625,
+          "time_reduction_ci_95_percent": [
+            12.575122782423717,
+            12.90731025885909
+          ],
+          "time_reduction_percent": 12.74625,
+          "total_chips": 4000,
+          "true_skip": 3399,
+          "true_test": 240
+        },
+        "name": "hybrid_c0.10_vae_q995_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.2,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.6685314685314685,
+          "failed_chips": 240,
+          "mcc": 0.6849930777269966,
+          "overtest": 236,
+          "overtest_rate": 0.0627659574468085,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.88125,
+          "test_rate": 0.11875,
+          "time_reduction": 0.1321875,
+          "time_reduction_ci_95_percent": [
+            13.062860193659876,
+            13.363666173714162
+          ],
+          "time_reduction_percent": 13.218750000000002,
+          "total_chips": 4000,
+          "true_skip": 3524,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.20_vae_q975_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.2,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.6459459459459459,
+          "failed_chips": 240,
+          "mcc": 0.6652543297127957,
+          "overtest": 261,
+          "overtest_rate": 0.06941489361702127,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.875,
+          "test_rate": 0.125,
+          "time_reduction": 0.13125,
+          "time_reduction_ci_95_percent": [
+            12.965848697747475,
+            13.273357565243382
+          ],
+          "time_reduction_percent": 13.125,
+          "total_chips": 4000,
+          "true_skip": 3499,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.20_vae_q975_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.2,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.6104725415070242,
+          "failed_chips": 240,
+          "mcc": 0.6343991861354664,
+          "overtest": 304,
+          "overtest_rate": 0.08085106382978724,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.86425,
+          "test_rate": 0.13575,
+          "time_reduction": 0.1296375,
+          "time_reduction_ci_95_percent": [
+            12.799277433201233,
+            13.117738250250554
+          ],
+          "time_reduction_percent": 12.96375,
+          "total_chips": 4000,
+          "true_skip": 3456,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.20_vae_q975_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.2,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.7113095238095238,
+          "failed_chips": 240,
+          "mcc": 0.7226846659206251,
+          "overtest": 193,
+          "overtest_rate": 0.05132978723404255,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.892,
+          "test_rate": 0.108,
+          "time_reduction": 0.1338,
+          "time_reduction_ci_95_percent": [
+            13.230038219188508,
+            13.518678727724604
+          ],
+          "time_reduction_percent": 13.38,
+          "total_chips": 4000,
+          "true_skip": 3567,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.20_vae_q990_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.2,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.6828571428571428,
+          "failed_chips": 240,
+          "mcc": 0.6975653247403648,
+          "overtest": 221,
+          "overtest_rate": 0.05877659574468085,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.885,
+          "test_rate": 0.115,
+          "time_reduction": 0.13275,
+          "time_reduction_ci_95_percent": [
+            13.121130687804735,
+            13.417787742199213
+          ],
+          "time_reduction_percent": 13.275,
+          "total_chips": 4000,
+          "true_skip": 3539,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.20_vae_q990_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.2,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.6398929049531459,
+          "failed_chips": 240,
+          "mcc": 0.6599785772062458,
+          "overtest": 268,
+          "overtest_rate": 0.07127659574468086,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.87325,
+          "test_rate": 0.12675,
+          "time_reduction": 0.13098749999999998,
+          "time_reduction_ci_95_percent": [
+            12.938708251364508,
+            13.248048382399059
+          ],
+          "time_reduction_percent": 13.098749999999997,
+          "total_chips": 4000,
+          "true_skip": 3492,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.20_vae_q990_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.2,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.7242424242424242,
+          "failed_chips": 240,
+          "mcc": 0.7341790546104394,
+          "overtest": 181,
+          "overtest_rate": 0.048138297872340426,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.895,
+          "test_rate": 0.105,
+          "time_reduction": 0.13425,
+          "time_reduction_ci_95_percent": [
+            13.276770061689714,
+            13.561860535327325
+          ],
+          "time_reduction_percent": 13.425,
+          "total_chips": 4000,
+          "true_skip": 3579,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.20_vae_q995_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.2,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.6947674418604651,
+          "failed_chips": 240,
+          "mcc": 0.7080543265934834,
+          "overtest": 209,
+          "overtest_rate": 0.05558510638297872,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.888,
+          "test_rate": 0.112,
+          "time_reduction": 0.1332,
+          "time_reduction_ci_95_percent": [
+            13.167783101161262,
+            13.461048978946613
+          ],
+          "time_reduction_percent": 13.320000000000002,
+          "total_chips": 4000,
+          "true_skip": 3551,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.20_vae_q995_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.2,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.6485753052917232,
+          "failed_chips": 240,
+          "mcc": 0.6675477610838841,
+          "overtest": 258,
+          "overtest_rate": 0.06861702127659575,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.87575,
+          "test_rate": 0.12425,
+          "time_reduction": 0.1313625,
+          "time_reduction_ci_95_percent": [
+            12.977483309502755,
+            13.284201366014086
+          ],
+          "time_reduction_percent": 13.136249999999999,
+          "total_chips": 4000,
+          "true_skip": 3502,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.20_vae_q995_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.35,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.7220543806646526,
+          "failed_chips": 240,
+          "mcc": 0.732230693211159,
+          "overtest": 183,
+          "overtest_rate": 0.04867021276595745,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.8945,
+          "test_rate": 0.1055,
+          "time_reduction": 0.134175,
+          "time_reduction_ci_95_percent": [
+            13.268978945886067,
+            13.554666042780317
+          ],
+          "time_reduction_percent": 13.417499999999999,
+          "total_chips": 4000,
+          "true_skip": 3577,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.35_vae_q975_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.35,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.6927536231884058,
+          "failed_chips": 240,
+          "mcc": 0.7062783203563535,
+          "overtest": 211,
+          "overtest_rate": 0.05611702127659574,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.8875,
+          "test_rate": 0.1125,
+          "time_reduction": 0.133125,
+          "time_reduction_ci_95_percent": [
+            13.160005422499172,
+            13.45384104925805
+          ],
+          "time_reduction_percent": 13.3125,
+          "total_chips": 4000,
+          "true_skip": 3549,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.35_vae_q975_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.35,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.6521145975443383,
+          "failed_chips": 240,
+          "mcc": 0.6706366143894588,
+          "overtest": 254,
+          "overtest_rate": 0.0675531914893617,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.87675,
+          "test_rate": 0.12325,
+          "time_reduction": 0.1315125,
+          "time_reduction_ci_95_percent": [
+            12.99299895127167,
+            13.298656940946483
+          ],
+          "time_reduction_percent": 13.151250000000001,
+          "total_chips": 4000,
+          "true_skip": 3506,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.35_vae_q975_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.35,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0005,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9916666666666667,
+          "escape_rate_upper_95": 0.02599868808703558,
+          "escapees": 2,
+          "f1": 0.7727272727272727,
+          "failed_chips": 240,
+          "mcc": 0.7771391203796923,
+          "overtest": 138,
+          "overtest_rate": 0.036702127659574466,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.008333333333333333,
+          "skip_rate": 0.906,
+          "test_rate": 0.094,
+          "time_reduction": 0.1359,
+          "time_reduction_ci_95_percent": [
+            13.448440752816495,
+            13.719873227914942
+          ],
+          "time_reduction_percent": 13.59,
+          "total_chips": 4000,
+          "true_skip": 3622,
+          "true_test": 238
+        },
+        "name": "hybrid_c0.35_vae_q990_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.35,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0005,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9916666666666667,
+          "escape_rate_upper_95": 0.02599868808703558,
+          "escapees": 2,
+          "f1": 0.7357032457496137,
+          "failed_chips": 240,
+          "mcc": 0.7436956084475742,
+          "overtest": 169,
+          "overtest_rate": 0.0449468085106383,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.008333333333333333,
+          "skip_rate": 0.89825,
+          "test_rate": 0.10175,
+          "time_reduction": 0.13473749999999998,
+          "time_reduction_ci_95_percent": [
+            13.327437090406628,
+            13.608599960889665
+          ],
+          "time_reduction_percent": 13.473749999999999,
+          "total_chips": 4000,
+          "true_skip": 3591,
+          "true_test": 238
+        },
+        "name": "hybrid_c0.35_vae_q990_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.35,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0005,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9916666666666667,
+          "escape_rate_upper_95": 0.02599868808703558,
+          "escapees": 2,
+          "f1": 0.6858789625360231,
+          "failed_chips": 240,
+          "mcc": 0.6994414180124489,
+          "overtest": 216,
+          "overtest_rate": 0.0574468085106383,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.008333333333333333,
+          "skip_rate": 0.8865,
+          "test_rate": 0.1135,
+          "time_reduction": 0.13297499999999998,
+          "time_reduction_ci_95_percent": [
+            13.144452812626389,
+            13.439422442429521
+          ],
+          "time_reduction_percent": 13.297499999999998,
+          "total_chips": 4000,
+          "true_skip": 3544,
+          "true_test": 238
+        },
+        "name": "hybrid_c0.35_vae_q990_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.35,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0005,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9916666666666667,
+          "escape_rate_upper_95": 0.02599868808703558,
+          "escapees": 2,
+          "f1": 0.7893864013266998,
+          "failed_chips": 240,
+          "mcc": 0.7923760640458999,
+          "overtest": 125,
+          "overtest_rate": 0.03324468085106383,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.008333333333333333,
+          "skip_rate": 0.90925,
+          "test_rate": 0.09075,
+          "time_reduction": 0.1363875,
+          "time_reduction_ci_95_percent": [
+            13.499265785381551,
+            13.766454649629143
+          ],
+          "time_reduction_percent": 13.63875,
+          "total_chips": 4000,
+          "true_skip": 3635,
+          "true_test": 238
+        },
+        "name": "hybrid_c0.35_vae_q995_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.35,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0005,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9916666666666667,
+          "escape_rate_upper_95": 0.02599868808703558,
+          "escapees": 2,
+          "f1": 0.750788643533123,
+          "failed_chips": 240,
+          "mcc": 0.7572568738998481,
+          "overtest": 156,
+          "overtest_rate": 0.04148936170212766,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.008333333333333333,
+          "skip_rate": 0.9015,
+          "test_rate": 0.0985,
+          "time_reduction": 0.13522499999999998,
+          "time_reduction_ci_95_percent": [
+            13.378148381063927,
+            13.655295124511621
+          ],
+          "time_reduction_percent": 13.522499999999999,
+          "total_chips": 4000,
+          "true_skip": 3604,
+          "true_test": 238
+        },
+        "name": "hybrid_c0.35_vae_q995_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.35,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0005,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9916666666666667,
+          "escape_rate_upper_95": 0.02599868808703558,
+          "escapees": 2,
+          "f1": 0.6969253294289898,
+          "failed_chips": 240,
+          "mcc": 0.7091901920905843,
+          "overtest": 205,
+          "overtest_rate": 0.05452127659574468,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.008333333333333333,
+          "skip_rate": 0.88925,
+          "test_rate": 0.11075,
+          "time_reduction": 0.1333875,
+          "time_reduction_ci_95_percent": [
+            13.187231347556464,
+            13.47906475342805
+          ],
+          "time_reduction_percent": 13.33875,
+          "total_chips": 4000,
+          "true_skip": 3555,
+          "true_test": 238
+        },
+        "name": "hybrid_c0.35_vae_q995_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.5,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.7599364069952306,
+          "failed_chips": 240,
+          "mcc": 0.766198864462272,
+          "overtest": 150,
+          "overtest_rate": 0.0398936170212766,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.90275,
+          "test_rate": 0.09725,
+          "time_reduction": 0.13541250000000002,
+          "time_reduction_ci_95_percent": [
+            13.397664917537956,
+            13.67324260891423
+          ],
+          "time_reduction_percent": 13.541250000000002,
+          "total_chips": 4000,
+          "true_skip": 3610,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.50_vae_q975_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.5,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.7264437689969605,
+          "failed_chips": 240,
+          "mcc": 0.7361408296088839,
+          "overtest": 179,
+          "overtest_rate": 0.047606382978723404,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.8955,
+          "test_rate": 0.1045,
+          "time_reduction": 0.134325,
+          "time_reduction_ci_95_percent": [
+            13.284562182135373,
+            13.569054023232319
+          ],
+          "time_reduction_percent": 13.4325,
+          "total_chips": 4000,
+          "true_skip": 3581,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.50_vae_q975_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.5,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.6799431009957326,
+          "failed_chips": 240,
+          "mcc": 0.6950042508615699,
+          "overtest": 224,
+          "overtest_rate": 0.059574468085106386,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.88425,
+          "test_rate": 0.11575,
+          "time_reduction": 0.1326375,
+          "time_reduction_ci_95_percent": [
+            13.109472643322418,
+            13.406967374155549
+          ],
+          "time_reduction_percent": 13.26375,
+          "total_chips": 4000,
+          "true_skip": 3536,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.50_vae_q975_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.5,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0005,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9916666666666667,
+          "escape_rate_upper_95": 0.02599868808703558,
+          "escapees": 2,
+          "f1": 0.8164665523156089,
+          "failed_chips": 240,
+          "mcc": 0.817429673964425,
+          "overtest": 105,
+          "overtest_rate": 0.027925531914893616,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.008333333333333333,
+          "skip_rate": 0.91425,
+          "test_rate": 0.08575,
+          "time_reduction": 0.13713750000000002,
+          "time_reduction_ci_95_percent": [
+            13.577559764425077,
+            13.83801675409216
+          ],
+          "time_reduction_percent": 13.713750000000003,
+          "total_chips": 4000,
+          "true_skip": 3655,
+          "true_test": 238
+        },
+        "name": "hybrid_c0.50_vae_q990_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.5,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0005,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9916666666666667,
+          "escape_rate_upper_95": 0.02599868808703558,
+          "escapees": 2,
+          "f1": 0.7739837398373983,
+          "failed_chips": 240,
+          "mcc": 0.7782839657609302,
+          "overtest": 137,
+          "overtest_rate": 0.036436170212765955,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.008333333333333333,
+          "skip_rate": 0.90625,
+          "test_rate": 0.09375,
+          "time_reduction": 0.1359375,
+          "time_reduction_ci_95_percent": [
+            13.452348594942166,
+            13.723458189964596
+          ],
+          "time_reduction_percent": 13.593749999999998,
+          "total_chips": 4000,
+          "true_skip": 3623,
+          "true_test": 238
+        },
+        "name": "hybrid_c0.50_vae_q990_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.5,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0005,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9916666666666667,
+          "escape_rate_upper_95": 0.02599868808703558,
+          "escapees": 2,
+          "f1": 0.7168674698795181,
+          "failed_chips": 240,
+          "mcc": 0.7268759606656361,
+          "overtest": 186,
+          "overtest_rate": 0.04946808510638298,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.008333333333333333,
+          "skip_rate": 0.894,
+          "test_rate": 0.106,
+          "time_reduction": 0.1341,
+          "time_reduction_ci_95_percent": [
+            13.261188828443284,
+            13.547470551872443
+          ],
+          "time_reduction_percent": 13.41,
+          "total_chips": 4000,
+          "true_skip": 3574,
+          "true_test": 238
+        },
+        "name": "hybrid_c0.50_vae_q990_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.5,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0005,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9916666666666667,
+          "escape_rate_upper_95": 0.02599868808703558,
+          "escapees": 2,
+          "f1": 0.8350877192982457,
+          "failed_chips": 240,
+          "mcc": 0.834882181475191,
+          "overtest": 92,
+          "overtest_rate": 0.02446808510638298,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.008333333333333333,
+          "skip_rate": 0.9175,
+          "test_rate": 0.0825,
+          "time_reduction": 0.137625,
+          "time_reduction_ci_95_percent": [
+            13.628520900518454,
+            13.884462072278037
+          ],
+          "time_reduction_percent": 13.7625,
+          "total_chips": 4000,
+          "true_skip": 3668,
+          "true_test": 238
+        },
+        "name": "hybrid_c0.50_vae_q995_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.5,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0005,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9916666666666667,
+          "escape_rate_upper_95": 0.02599868808703558,
+          "escapees": 2,
+          "f1": 0.7906976744186046,
+          "failed_chips": 240,
+          "mcc": 0.7935808445623219,
+          "overtest": 124,
+          "overtest_rate": 0.03297872340425532,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.008333333333333333,
+          "skip_rate": 0.9095,
+          "test_rate": 0.0905,
+          "time_reduction": 0.136425,
+          "time_reduction_ci_95_percent": [
+            13.503177507970445,
+            13.770035731215568
+          ],
+          "time_reduction_percent": 13.642499999999998,
+          "total_chips": 4000,
+          "true_skip": 3636,
+          "true_test": 238
+        },
+        "name": "hybrid_c0.50_vae_q995_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.5,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0005,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9916666666666667,
+          "escape_rate_upper_95": 0.02599868808703558,
+          "escapees": 2,
+          "f1": 0.7289433384379785,
+          "failed_chips": 240,
+          "mcc": 0.7376454584012556,
+          "overtest": 175,
+          "overtest_rate": 0.04654255319148936,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.008333333333333333,
+          "skip_rate": 0.89675,
+          "test_rate": 0.10325,
+          "time_reduction": 0.1345125,
+          "time_reduction_ci_95_percent": [
+            13.304046920451476,
+            13.587033305792854
+          ],
+          "time_reduction_percent": 13.45125,
+          "total_chips": 4000,
+          "true_skip": 3585,
+          "true_test": 238
+        },
+        "name": "hybrid_c0.50_vae_q995_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.65,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.7823240589198036,
+          "failed_chips": 240,
+          "mcc": 0.7865368564953661,
+          "overtest": 132,
+          "overtest_rate": 0.035106382978723406,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.90725,
+          "test_rate": 0.09275,
+          "time_reduction": 0.1360875,
+          "time_reduction_ci_95_percent": [
+            13.467982894496949,
+            13.737795107111122
+          ],
+          "time_reduction_percent": 13.60875,
+          "total_chips": 4000,
+          "true_skip": 3628,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.65_vae_q975_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.65,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.7457098283931357,
+          "failed_chips": 240,
+          "mcc": 0.7533808606310353,
+          "overtest": 162,
+          "overtest_rate": 0.04308510638297872,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.89975,
+          "test_rate": 0.10025,
+          "time_reduction": 0.13496249999999999,
+          "time_reduction_ci_95_percent": [
+            13.35083668687587,
+            13.630157189472389
+          ],
+          "time_reduction_percent": 13.496249999999998,
+          "total_chips": 4000,
+          "true_skip": 3598,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.65_vae_q975_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.65,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.7926486134529114,
+          "vae_threshold_name": "vae_q975"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00025,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9958333333333333,
+          "escape_rate_upper_95": 0.019612599628702362,
+          "escapees": 1,
+          "f1": 0.6967930029154519,
+          "failed_chips": 240,
+          "mcc": 0.7098417576769432,
+          "overtest": 207,
+          "overtest_rate": 0.055053191489361705,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.004166666666666667,
+          "skip_rate": 0.8885,
+          "test_rate": 0.1115,
+          "time_reduction": 0.13327499999999998,
+          "time_reduction_ci_95_percent": [
+            13.175561702765549,
+            13.46825598569298
+          ],
+          "time_reduction_percent": 13.327499999999997,
+          "total_chips": 4000,
+          "true_skip": 3553,
+          "true_test": 239
+        },
+        "name": "hybrid_c0.65_vae_q975_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.65,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0005,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9916666666666667,
+          "escape_rate_upper_95": 0.02599868808703558,
+          "escapees": 2,
+          "f1": 0.8454706927175843,
+          "failed_chips": 240,
+          "mcc": 0.8446995481628883,
+          "overtest": 85,
+          "overtest_rate": 0.022606382978723406,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.008333333333333333,
+          "skip_rate": 0.91925,
+          "test_rate": 0.08075,
+          "time_reduction": 0.1378875,
+          "time_reduction_ci_95_percent": [
+            13.655985617838045,
+            13.909446984185736
+          ],
+          "time_reduction_percent": 13.78875,
+          "total_chips": 4000,
+          "true_skip": 3675,
+          "true_test": 238
+        },
+        "name": "hybrid_c0.65_vae_q990_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.65,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0005,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9916666666666667,
+          "escape_rate_upper_95": 0.02599868808703558,
+          "escapees": 2,
+          "f1": 0.7986577181208053,
+          "failed_chips": 240,
+          "mcc": 0.8009122050077216,
+          "overtest": 118,
+          "overtest_rate": 0.03138297872340425,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.008333333333333333,
+          "skip_rate": 0.911,
+          "test_rate": 0.089,
+          "time_reduction": 0.13665000000000002,
+          "time_reduction_ci_95_percent": [
+            13.526654314744519,
+            13.791515749493463
+          ],
+          "time_reduction_percent": 13.665000000000003,
+          "total_chips": 4000,
+          "true_skip": 3642,
+          "true_test": 238
+        },
+        "name": "hybrid_c0.65_vae_q990_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.65,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.855223536491394,
+          "vae_threshold_name": "vae_q990"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.0005,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9916666666666667,
+          "escape_rate_upper_95": 0.02599868808703558,
+          "escapees": 2,
+          "f1": 0.737984496124031,
+          "failed_chips": 240,
+          "mcc": 0.745740983579494,
+          "overtest": 167,
+          "overtest_rate": 0.04441489361702128,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.008333333333333333,
+          "skip_rate": 0.89875,
+          "test_rate": 0.10125,
+          "time_reduction": 0.1348125,
+          "time_reduction_ci_95_percent": [
+            13.335235899374121,
+            13.615786760272828
+          ],
+          "time_reduction_percent": 13.48125,
+          "total_chips": 4000,
+          "true_skip": 3593,
+          "true_test": 238
+        },
+        "name": "hybrid_c0.65_vae_q990_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.65,
+          "sigma_variant": "sigma_tail_0.00010",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00075,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9875,
+          "escape_rate_upper_95": 0.03198819975403925,
+          "escapees": 3,
+          "f1": 0.8633879781420765,
+          "failed_chips": 240,
+          "mcc": 0.861352889644898,
+          "overtest": 72,
+          "overtest_rate": 0.019148936170212766,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0125,
+          "skip_rate": 0.92275,
+          "test_rate": 0.07725,
+          "time_reduction": 0.1384125,
+          "time_reduction_ci_95_percent": [
+            13.710968130018056,
+            13.959363730460304
+          ],
+          "time_reduction_percent": 13.841249999999999,
+          "total_chips": 4000,
+          "true_skip": 3688,
+          "true_test": 237
+        },
+        "name": "hybrid_c0.65_vae_q995_sigma_tail_0.00010",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.65,
+          "sigma_variant": "sigma_tail_0.00025",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00075,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9875,
+          "escape_rate_upper_95": 0.03198819975403925,
+          "escapees": 3,
+          "f1": 0.8144329896907216,
+          "failed_chips": 240,
+          "mcc": 0.8149731929687054,
+          "overtest": 105,
+          "overtest_rate": 0.027925531914893616,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0125,
+          "skip_rate": 0.9145,
+          "test_rate": 0.0855,
+          "time_reduction": 0.137175,
+          "time_reduction_ci_95_percent": [
+            13.581477838259353,
+            13.841591484433211
+          ],
+          "time_reduction_percent": 13.7175,
+          "total_chips": 4000,
+          "true_skip": 3655,
+          "true_test": 237
+        },
+        "name": "hybrid_c0.65_vae_q995_sigma_tail_0.00025",
+        "policy_family": "hybrid_or"
+      },
+      {
+        "configuration": {
+          "classifier_threshold": 0.65,
+          "sigma_variant": "sigma_tail_0.00050",
+          "vae_threshold": 0.9061563611030579,
+          "vae_threshold_name": "vae_q995"
+        },
+        "eligible_for_selection": true,
+        "gate_result": {
+          "checks": {
+            "escape_uncertainty": false,
+            "observed_escapees": false,
+            "overtest": true
+          },
+          "gates": {
+            "maximum_escape_rate_upper_95": 0.015,
+            "maximum_observed_escapees": 0,
+            "maximum_overtest_rate": 0.2
+          },
+          "passed": false
+        },
+        "metrics": {
+          "absolute_escape_rate": 0.00075,
+          "cost_model": {
+            "early_stage_units": 85.0,
+            "optional_stage_units": 15.0
+          },
+          "defect_recall": 0.9875,
+          "escape_rate_upper_95": 0.03198819975403925,
+          "escapees": 3,
+          "f1": 0.7488151658767772,
+          "failed_chips": 240,
+          "mcc": 0.7547901382467797,
+          "overtest": 156,
+          "overtest_rate": 0.04148936170212766,
+          "pass_chips": 3760,
+          "relative_escape_rate": 0.0125,
+          "skip_rate": 0.90175,
+          "test_rate": 0.09825,
+          "time_reduction": 0.1352625,
+          "time_reduction_ci_95_percent": [
+            13.382051137869395,
+            13.658885171881483
+          ],
+          "time_reduction_percent": 13.526250000000001,
+          "total_chips": 4000,
+          "true_skip": 3604,
+          "true_test": 237
+        },
+        "name": "hybrid_c0.65_vae_q995_sigma_tail_0.00050",
+        "policy_family": "hybrid_or"
+      }
+    ],
+    "classifier_quality": {
+      "brier_score": 0.008527402766048908,
+      "ece_10_bin": 0.022350423268973827,
+      "pr_auc": 0.9908079648018274,
+      "roc_auc": 0.999213209219858
+    },
+    "eligible_candidate_count": 54,
+    "selected_candidate": {
+      "configuration": {
+        "classifier_threshold": 0.1,
+        "sigma_variant": "sigma_tail_0.00010",
+        "vae_threshold": 0.9061563611030579,
+        "vae_threshold_name": "vae_q995"
+      },
+      "eligible_for_selection": true,
+      "gate_result": {
+        "checks": {
+          "escape_uncertainty": true,
+          "observed_escapees": true,
+          "overtest": true
+        },
+        "gates": {
+          "maximum_escape_rate_upper_95": 0.015,
+          "maximum_observed_escapees": 0,
+          "maximum_overtest_rate": 0.2
+        },
+        "passed": true
+      },
+      "metrics": {
+        "absolute_escape_rate": 0.0,
+        "cost_model": {
+          "early_stage_units": 85.0,
+          "optional_stage_units": 15.0
+        },
+        "defect_recall": 1.0,
+        "escape_rate_upper_95": 0.012404638050409015,
+        "escapees": 0,
+        "f1": 0.6274509803921569,
+        "failed_chips": 240,
+        "mcc": 0.6499941547551066,
+        "overtest": 285,
+        "overtest_rate": 0.07579787234042554,
+        "pass_chips": 3760,
+        "relative_escape_rate": 0.0,
+        "skip_rate": 0.86875,
+        "test_rate": 0.13125,
+        "time_reduction": 0.1303125,
+        "time_reduction_ci_95_percent": [
+          12.86896236917568,
+          13.182923789432
+        ],
+        "time_reduction_percent": 13.03125,
+        "total_chips": 4000,
+        "true_skip": 3475,
+        "true_test": 240
+      },
+      "name": "hybrid_c0.10_vae_q995_sigma_tail_0.00010",
+      "policy_family": "hybrid_or"
+    },
+    "vae_ranking_quality": {
+      "pr_auc": 0.8593807615476343,
+      "roc_auc": 0.977436835106383
+    }
+  }
+}

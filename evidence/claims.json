@@ -1,37 +1,265 @@
 {
+  "schema_version": 1,
   "project": "Chip-Level Test Time Optimizer",
+  "evidence_policy": "Only reproduced, measured, target, and architecture claims below may be used publicly with their stated scope.",
+  "data_scope": {
+    "provenance": "independently generated synthetic data; no external or confidential dataset",
+    "license": "MIT repository code; generated rows are not redistributed",
+    "feature_count": 32,
+    "feature_groups": [
+      "voltage",
+      "current",
+      "timing",
+      "resistance"
+    ],
+    "known_failure_modes": [
+      "voltage_drift",
+      "leakage_spike",
+      "timing_shift",
+      "resistance_bridge"
+    ],
+    "ood_failure_mode": "novel_coupled_drift",
+    "base_seed": 20260807
+  },
+  "champion": {
+    "model_id": "public_synthetic_hybrid_v1",
+    "bundle_id": "53ce0e9ccbd63b3c84c581a0dedc325782e8c09b72847977626f41aa6ad3d1fe",
+    "policy": "classifier OR VAE OR sigma guardrails OR lot drift block",
+    "classifier_threshold": 0.2,
+    "vae_threshold": 0.855223536491394,
+    "sigma_variant": "sigma_tail_0.00010"
+  },
   "claims": [
     {
-      "claim": "SigmaRule correctly flags extreme outliers (8σ variance) after fitting on normal distribution data",
-      "value": true,
-      "unit": "boolean",
-      "evidence_class": "measured",
-      "artifact": "tests/test_sigma_rules.py::test_sigma_rule_flags_outliers"
+      "id": "dataset_contract",
+      "claim": "The versioned benchmark contains 58,000 independently generated synthetic chips across eight isolated chronological/grouped splits, plus a disjoint 10,000-chip post-freeze operational-envelope confirmation.",
+      "value": {
+        "benchmark_samples": 58000,
+        "benchmark_lots": 116,
+        "post_freeze_samples": 10000,
+        "post_freeze_lots": 20,
+        "feature_count": 32,
+        "chip_overlap": 0,
+        "lot_overlap": 0,
+        "time_overlap": 0
+      },
+      "evidence_class": "reproduced",
+      "artifacts": [
+        "evidence/public_synthetic_dataset_manifest.json",
+        "evidence/operational_envelope_confirmation.json",
+        "tests/test_synthetic_data.py"
+      ],
+      "allowed_wording": "68,000 independently generated synthetic chips across isolated development, confirmation, robustness, and post-freeze splits."
     },
     {
-      "claim": "All business metrics (skip_rate, escapee_rate, overreject_rate, test_rate) are in [0, 1]",
-      "value": true,
-      "unit": "boolean",
-      "evidence_class": "measured",
-      "artifact": "tests/test_evaluator.py::test_evaluate_ml_metrics_range"
+      "id": "bounded_selection",
+      "claim": "The selected hybrid was chosen from 180 eligible hybrid OR policies within a 198-candidate catalog by maximizing validation time reduction subject to every predeclared safety gate; confirmation data was not used for selection.",
+      "value": {
+        "development_samples": 20000,
+        "candidate_count": 198,
+        "eligible_hybrid_candidates": 180,
+        "selected_candidate": "hybrid_c0.20_vae_q990_sigma_tail_0.00010",
+        "validation_time_reduction_percent": 13.108500000000001,
+        "validation_escapees": 10,
+        "validation_failures": 1200,
+        "validation_overtest_rate": 0.07085106382978723
+      },
+      "evidence_class": "reproduced",
+      "artifacts": [
+        "evidence/public_synthetic_evaluation.json",
+        "tests/test_experiment.py",
+        "tests/test_policy_metrics.py"
+      ],
+      "allowed_wording": "Selected the highest-reduction eligible hybrid policy from 180 candidates under predeclared escape, uncertainty, and over-test gates."
     },
     {
-      "claim": "HybridEnsemble OR logic guarantees ensemble flags are a superset of sigma rule flags",
-      "value": true,
-      "unit": "boolean",
-      "evidence_class": "measured",
-      "artifact": "tests/test_ensemble.py::test_ensemble_or_logic_with_sigma"
+      "id": "component_tradeoff",
+      "claim": "Classifier-only, VAE-only, and sigma-only ablations were measured but were ineligible for promotion and failed at least one safety gate; the hybrid traded some simulated reduction for bounded escape risk.",
+      "value": {
+        "all_test_time_reduction_percent": 0.0,
+        "classifier_time_reduction_percent": 13.434749999999998,
+        "classifier_relative_escape_rate": 0.010833333333333334,
+        "vae_time_reduction_percent": 13.818,
+        "vae_relative_escape_rate": 0.2675,
+        "sigma_time_reduction_percent": 13.87575,
+        "sigma_relative_escape_rate": 0.365,
+        "hybrid_time_reduction_percent": 13.108500000000001,
+        "hybrid_relative_escape_rate": 0.008333333333333333
+      },
+      "evidence_class": "reproduced",
+      "artifacts": [
+        "evidence/public_synthetic_evaluation.json",
+        "docs/assets/candidate_tradeoff.png"
+      ],
+      "allowed_wording": "Component ablations saved more simulated time but failed safety gates; the selected hybrid reduced escape risk."
     },
     {
-      "claim": "DataValidator rejects empty DataFrames and DataFrames missing required features",
-      "value": true,
-      "unit": "boolean",
+      "id": "rejected_frozen_confirmation",
+      "claim": "The first frozen known-mode confirmation was rejected because the drift guard blocked all 20 lots, yielding zero escapes but 100% over-test and 0% simulated reduction.",
+      "value": {
+        "samples": 10000,
+        "failures": 600,
+        "blocked_lots": 20,
+        "escapees": 0,
+        "overtest_rate": 1.0,
+        "time_reduction_percent": 0.0,
+        "accepted": false
+      },
+      "evidence_class": "reproduced",
+      "artifacts": [
+        "evidence/public_synthetic_evaluation.json",
+        "docs/assets/confirmation_policy_matrix.png"
+      ],
+      "allowed_wording": "Retained a rejected first frozen confirmation that failed utility because all lots were blocked."
+    },
+    {
+      "id": "ood_fail_closed",
+      "claim": "On the 5,000-chip synthetic OOD confirmation, all ten shifted lots were blocked and all chips ran the optional test, producing zero escapes and 0% simulated reduction.",
+      "value": {
+        "samples": 5000,
+        "failures": 1000,
+        "blocked_lots": 10,
+        "escapees": 0,
+        "defect_recall": 1.0,
+        "overtest_rate": 1.0,
+        "time_reduction_percent": 0.0
+      },
+      "evidence_class": "reproduced",
+      "artifacts": [
+        "evidence/public_synthetic_evaluation.json",
+        "tests/test_drift.py"
+      ],
+      "allowed_wording": "The synthetic OOD guard failed closed by running every chip; this demonstrates blocking, not OOD per-chip classification."
+    },
+    {
+      "id": "post_freeze_operational_confirmation",
+      "claim": "On 10,000 new chronological synthetic chips inside the declared development envelope, the exact frozen bundle measured 13.524% simulated time reduction, 99.0% defect recall, six escapes among 600 failures, and 4.149% over-test.",
+      "value": {
+        "samples": 10000,
+        "lots": 20,
+        "pass_chips": 9400,
+        "failed_chips": 600,
+        "time_reduction_percent": 13.524,
+        "time_reduction_ci_95_percent": [
+          13.434105373323945,
+          13.609268214306141
+        ],
+        "defect_recall": 0.99,
+        "escapees": 6,
+        "relative_escape_rate": 0.01,
+        "absolute_escape_rate": 0.0006,
+        "escape_rate_upper_95": 0.01964133024229399,
+        "overtest": 390,
+        "overtest_rate": 0.04148936170212766,
+        "mcc": 0.7562706695296387
+      },
+      "evidence_class": "reproduced",
+      "artifacts": [
+        "evidence/operational_envelope_confirmation.json",
+        "tests/test_runtime.py"
+      ],
+      "allowed_wording": "Measured 13.524% simulated optional-stage reduction at 99.0% defect recall, with 6/600 escaped synthetic failures and 4.149% over-test on a disjoint 10,000-chip post-freeze confirmation."
+    },
+    {
+      "id": "weakest_failure_mode",
+      "claim": "Timing shift was the weakest known post-freeze failure mode at 98.571% recall; leakage spike and voltage drift each reached 98.75%, and resistance bridge reached 100%.",
+      "value": {
+        "timing_shift_recall": 0.9857142857142858,
+        "leakage_spike_recall": 0.9875,
+        "voltage_drift_recall": 0.9875,
+        "resistance_bridge_recall": 1.0
+      },
+      "evidence_class": "reproduced",
+      "artifacts": [
+        "evidence/operational_envelope_confirmation.json"
+      ],
+      "allowed_wording": "Weakest known-mode recall was 98.571% for timing shift."
+    },
+    {
+      "id": "artifact_identity",
+      "claim": "Serving verifies the classifier, VAE, dataset manifest, evaluation artifact, and bundle identity before inference.",
+      "value": {
+        "classifier_sha256": "52da84b9972d3ede2b3f1860f1c07080dfcb74db03882c120a07d7e696ff5c02",
+        "vae_sha256": "0fc8a9bb9f9d02cb94d9b56c3a30fc6e4233410ea5e83569640870189ba9d9d2",
+        "bundle_id": "53ce0e9ccbd63b3c84c581a0dedc325782e8c09b72847977626f41aa6ad3d1fe"
+      },
+      "evidence_class": "reproduced",
+      "artifacts": [
+        "artifacts/public_v1/runtime_manifest.json",
+        "deployment/runtime.py",
+        "tests/test_runtime.py"
+      ],
+      "allowed_wording": "Hash-bound frozen classifier/VAE policy with fail-closed schema and lot-context validation."
+    },
+    {
+      "id": "delivery_surfaces",
+      "claim": "The frozen policy is available through a bounded CLI, authenticated FastAPI endpoint, Streamlit evidence dashboard, and non-root container definition.",
+      "value": [
+        "CLI",
+        "FastAPI",
+        "Streamlit",
+        "Docker Compose"
+      ],
+      "evidence_class": "architecture",
+      "artifacts": [
+        "deployment/generate_flags.py",
+        "deployment/api.py",
+        "app.py",
+        "Dockerfile",
+        "compose.yml",
+        "tests/test_flag_generation.py",
+        "tests/test_api.py",
+        "tests/test_dashboard.py"
+      ],
+      "allowed_wording": "Delivered a bounded CLI, authenticated API, evidence dashboard, and non-root container reference."
+    },
+    {
+      "id": "local_api_load",
+      "claim": "A bounded local Windows CPU API measurement completed 100 authenticated one-chip requests at concurrency five without errors.",
+      "value": {
+        "requests": 100,
+        "concurrency": 5,
+        "records_per_request": 1,
+        "successes": 100,
+        "failures": 0,
+        "requests_per_second": 10.220487078774829,
+        "latency_ms": {
+          "p50": 470.5018000013297,
+          "p95": 565.3736100007332,
+          "p99": 721.7336509997222
+        }
+      },
       "evidence_class": "measured",
-      "artifact": "tests/test_preprocessing.py"
+      "artifacts": [
+        "evidence/local_api_load.json",
+        "scripts/run_api_load.py"
+      ],
+      "allowed_wording": "Local Windows CPU API measurement: 100/100 authenticated requests, 10.22 requests/s, and 470.50/565.37/721.73 ms p50/p95/p99 at concurrency five; not a production SLO."
     }
   ],
-  "business_impact": {
-    "metric": "chip test skip rate",
-    "conservative_OR_logic": "zero escapees prioritized over aggressive skipping"
-  }
+  "targets": [
+    {
+      "id": "time_reduction_target",
+      "claim": "15% simulated optional-stage test-time reduction",
+      "value": 15.0,
+      "unit": "percent",
+      "evidence_class": "target",
+      "status": "unmet"
+    },
+    {
+      "id": "zero_escape_target",
+      "claim": "Zero observed escaped failures",
+      "value": 0,
+      "unit": "escaped failures",
+      "evidence_class": "target",
+      "status": "unmet"
+    }
+  ],
+  "unsupported_claims": [
+    "Zero escapees are guaranteed by OR logic.",
+    "The policy has demonstrated production test-time or cost savings.",
+    "Synthetic failure modes establish coverage of physical semiconductor defects.",
+    "The local latency, container, or throughput behavior is a production service-level objective.",
+    "The frozen policy is approved for unsupervised production deployment."
+  ]
 }

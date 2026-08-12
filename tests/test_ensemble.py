@@ -1,11 +1,11 @@
 """Tests for HybridEnsemble OR-logic combining sigma rules + optional DL models."""
-import sys, os
+import os
+import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 import numpy as np
-import pandas as pd
 import pytest
-from models.ensemble import HybridEnsemble
+from models.ensemble import HybridEnsemble, calculate_time_savings
 from models.statistical.sigma_rules import SigmaRule
 
 
@@ -63,3 +63,13 @@ def test_ensemble_or_logic_with_sigma(mixed_df):
 def test_ensemble_conservative_default_threshold():
     ens = HybridEnsemble()
     assert ens.classifier_threshold <= 0.5  # conservative (lower threshold)
+
+
+def test_time_savings_only_counts_optional_stage():
+    flags = np.array([0] * 75 + [1] * 25)
+
+    savings = calculate_time_savings(flags)
+
+    assert savings["skip_rate"] == pytest.approx(0.75)
+    assert savings["time_reduction_percent"] == pytest.approx(11.25)
+    assert savings["actual_units"] == pytest.approx(8875.0)

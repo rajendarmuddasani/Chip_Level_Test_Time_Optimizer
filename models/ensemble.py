@@ -12,8 +12,7 @@ Uses conservative OR logic: TEST if ANY method flags the chip.
 import torch
 import numpy as np
 import pandas as pd
-from typing import Dict, Tuple, List
-import joblib
+from typing import Dict
 
 
 class HybridEnsemble:
@@ -24,8 +23,8 @@ class HybridEnsemble:
         TEST = Classifier_flag OR VAE_flag OR Sigma_flag
         SKIP = All methods agree chip is normal
     
-    This conservative approach prioritizes safety (zero escapees) over
-    aggressive test skipping.
+    This conservative approach prioritizes lower escape risk over aggressive
+    test skipping; OR logic does not guarantee zero escapees.
     
     Attributes:
         classifier: Neural network classifier model
@@ -171,7 +170,7 @@ class HybridEnsemble:
         Returns:
             Dictionary of metrics for each model and ensemble
         """
-        from sklearn.metrics import confusion_matrix, classification_report
+        from sklearn.metrics import confusion_matrix
         
         predictions = self.predict_with_details(X)
         metrics = {}
@@ -265,66 +264,37 @@ class HybridEnsemble:
         return ensemble
 
 
-def calculate_time_savings(flags: np.ndarray, test_time_per_chip: float = 30.0) -> Dict[str, float]:
-    """
-    Calculate test time savings from skip flags
-    
-    Args:
-        flags: Binary flags (0=skip, 1=test)
-        test_time_per_chip: Average test time per chip in minutes
-    
-    Returns:
-        Dictionary with time savings metrics
-    """
+def calculate_time_savings(
+    flags: np.ndarray,
+    early_stage_units: float = 85.0,
+    optional_stage_units: float = 15.0,
+) -> Dict[str, float]:
+    """Calculate simulated reduction when only the optional stage can be skipped."""
+    if early_stage_units < 0 or optional_stage_units <= 0:
+        raise ValueError("Require early_stage_units >= 0 and optional_stage_units > 0")
     n_total = len(flags)
+    if n_total == 0:
+        raise ValueError("At least one flag is required")
     n_skipped = (flags == 0).sum()
     n_tested = (flags == 1).sum()
-    
+    if n_skipped + n_tested != n_total:
+        raise ValueError("Flags must be binary")
+
     skip_rate = n_skipped / n_total
-    total_time_original = n_total * test_time_per_chip
-    total_time_saved = n_skipped * test_time_per_chip
-    total_time_actual = n_tested * test_time_per_chip
-    
+    full_flow_units = early_stage_units + optional_stage_units
+    baseline_units = n_total * full_flow_units
+    saved_units = n_skipped * optional_stage_units
+    actual_units = baseline_units - saved_units
+    time_reduction = saved_units / baseline_units
+
     return {
         'skip_rate': skip_rate,
-        'n_skipped': n_skipped,
-        'n_tested': n_tested,
-        'time_saved_minutes': total_time_saved,
-        'time_saved_hours': total_time_saved / 60,
-        'time_reduction_percent': skip_rate * 100,
-        'original_time_minutes': total_time_original,
-        'actual_time_minutes': total_time_actual
+        'n_skipped': int(n_skipped),
+        'n_tested': int(n_tested),
+        'saved_units': float(saved_units),
+        'time_reduction_percent': float(time_reduction * 100.0),
+        'baseline_units': float(baseline_units),
+        'actual_units': float(actual_units),
+        'early_stage_units': early_stage_units,
+        'optional_stage_units': optional_stage_units,
     }
-
-
-if __name__ == "__main__":
-    print("Testing Hybrid Ensemble...")
-    
-    # This is a demonstration - in practice, you would load trained models
-    print("\n⚠️  This is a structural test only.")
-    print("Real usage requires trained models from classifier_model.py, vae_model.py, and sigma_rules.py")
-    
-    # Create dummy data
-    n_samples = 1000
-    n_features = 50
-    X = pd.DataFrame(
-        np.random.randn(n_samples, n_features),
-        columns=[f'feature_{i}' for i in range(n_features)]
-    )
-    y = np.random.randint(0, 2, n_samples)
-    
-    # Initialize empty ensemble (no models loaded)
-    ensemble = HybridEnsemble()
-    
-    print(f"\nCreated ensemble with:")
-    print(f"  - Classifier: {ensemble.classifier is not None}")
-    print(f"  - VAE: {ensemble.vae is not None}")
-    print(f"  - Sigma: {ensemble.sigma is not None}")
-    
-    print("\n✓ Ensemble structure test passed!")
-    print("\nTo use this ensemble in production:")
-    print("1. Train classifier: python models/classification/classifier_model.py")
-    print("2. Train VAE: python models/anomaly_detection/vae_model.py")
-    print("3. Fit sigma rules: python models/statistical/sigma_rules.py")
-    print("4. Load trained models into HybridEnsemble")
-    print("5. Call ensemble.predict(X) to generate flags")

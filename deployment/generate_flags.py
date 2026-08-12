@@ -1,287 +1,188 @@
-"""
-Flag Generation for Production Test Flow
+"""Generate bounded SKIP/RUN decisions from the frozen public policy bundle."""
 
-This script generates binary test flags for production lots using the trained ensemble.
-Each chip receives a flag per test suite: 0 = SKIP test, 1 = RUN test.
+from __future__ import annotations
 
-Output Format: SORTFILE (text file with chip IDs and binary flags)
-"""
+import argparse
+import json
+import sys
+from pathlib import Path
 
 import pandas as pd
-import numpy as np
-from pathlib import Path
-import logging
-from typing import Dict, List
-import sys
-import argparse
 
-# Add parent directory to path for imports
-sys.path.append(str(Path(__file__).parent.parent))
+REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
+if str(REPOSITORY_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPOSITORY_ROOT))
 
-from models.ensemble import HybridEnsemble
-from preprocessing.preprocessing import preprocess_pipeline, FeatureScaler, DataValidator
-
-
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+from deployment.runtime import (  # noqa: E402
+    ArtifactIntegrityError,
+    HybridPolicyRuntime,
+    InputValidationError,
 )
-logger = logging.getLogger(__name__)
+
+
+DEFAULT_MANIFEST = REPOSITORY_ROOT / "artifacts" / "public_v1" / "runtime_manifest.json"
 
 
 class FlagGenerator:
-    """
-    Generate test skip flags for production lots
-    
-    Workflow:
-    1. Load test data (chip IDs + test measurements)
-    2. Preprocess features
-    3. Run ensemble inference
-    4. Generate sortfile (chip ID + flags)
-    5. Save results
-    
-    Example:
-        >>> generator = FlagGenerator(ensemble, scaler)
-        >>> flags_df = generator.generate_flags(data_df)
-        >>> generator.save_sortfile(flags_df, 'output.txt')
-    """
-    
-    def __init__(self, ensemble: HybridEnsemble, scaler: FeatureScaler):
-        """
-        Initialize flag generator
-        
-        Args:
-            ensemble: Trained HybridEnsemble model
-            scaler: Fitted FeatureScaler
-        """
-        self.ensemble = ensemble
-        self.scaler = scaler
-        self.validator = DataValidator()
-    
-    def generate_flags(self, data: pd.DataFrame, 
-                      chip_id_col: str = 'CHIP_ID') -> pd.DataFrame:
-        """
-        Generate test flags for a production lot
-        
-        Args:
-            data: DataFrame with chip IDs and test features
-            chip_id_col: Name of chip ID column
-        
-        Returns:
-            DataFrame with columns: [CHIP_ID, FLAG]
-            where FLAG is 0 (SKIP) or 1 (TEST)
-        """
-        logger.info(f"Generating flags for {len(data)} chips...")
-        
-        # Separate chip IDs from features
-        chip_ids = data[chip_id_col].copy()
-        features = data.drop(columns=[chip_id_col])
-        
-        # Preprocess
-        logger.info("Preprocessing features...")
-        features_scaled, metadata = preprocess_pipeline(
-            features, 
-            self.scaler,
-            self.validator
+    """Run the hash-bound policy and write auditable per-chip decisions."""
+
+    def __init__(
+        self,
+        manifest_path: str | Path = DEFAULT_MANIFEST,
+        runtime: HybridPolicyRuntime | None = None,
+    ) -> None:
+        self.runtime = runtime or HybridPolicyRuntime(manifest_path)
+
+    @staticmethod
+    def _normalise_identifiers(
+        data: pd.DataFrame,
+        chip_id_col: str,
+        lot_id_col: str,
+    ) -> pd.DataFrame:
+        rename = {}
+        if chip_id_col in data.columns and chip_id_col != "chip_id":
+            rename[chip_id_col] = "chip_id"
+        if lot_id_col in data.columns and lot_id_col != "lot_id":
+            rename[lot_id_col] = "lot_id"
+        for source, destination in rename.items():
+            if destination in data.columns:
+                raise InputValidationError(
+                    f"Both {source!r} and {destination!r} are present"
+                )
+        return data.rename(columns=rename)
+
+    def generate_flags(
+        self,
+        data: pd.DataFrame,
+        chip_id_col: str = "chip_id",
+        lot_id_col: str = "lot_id",
+    ) -> pd.DataFrame:
+        """Return detailed decisions; absent lot context fails closed to RUN."""
+        normalised = self._normalise_identifiers(data, chip_id_col, lot_id_col)
+        return self.runtime.predict_dataframe(normalised)
+
+    @staticmethod
+    def save_predictions(
+        predictions: pd.DataFrame,
+        output: Path,
+        output_format: str,
+    ) -> None:
+        """Write detailed CSV/JSON evidence or a minimal binary sortfile."""
+        output.parent.mkdir(parents=True, exist_ok=True)
+        if output_format == "csv":
+            predictions.to_csv(output, index=False)
+        elif output_format == "json":
+            json_ready = predictions.astype(object).where(
+                pd.notna(predictions),
+                None,
+            )
+            output.write_text(
+                json.dumps(
+                    {"records": json_ready.to_dict(orient="records")},
+                    indent=2,
+                    allow_nan=False,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+        elif output_format == "sortfile":
+            lines = (
+                f"{record.chip_id} {int(record.flag)}"
+                for record in predictions[["chip_id", "flag"]].itertuples(index=False)
+            )
+            output.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        else:
+            raise ValueError(f"Unsupported output format: {output_format}")
+
+    def summary(self, predictions: pd.DataFrame) -> dict:
+        """Summarize local decisions without projecting production savings."""
+        skipped = int((predictions["flag"] == 0).sum())
+        total = len(predictions)
+        cost_model = self.runtime.config["cost_model"]
+        optional_fraction = cost_model["optional_stage_units"] / (
+            cost_model["early_stage_units"] + cost_model["optional_stage_units"]
         )
-        
-        # Generate flags
-        logger.info("Running ensemble inference...")
-        flags = self.ensemble.predict(features_scaled)
-        
-        # Create results DataFrame
-        results = pd.DataFrame({
-            chip_id_col: chip_ids,
-            'FLAG': flags
-        })
-        
-        # Log summary statistics
-        skip_rate = (flags == 0).mean()
-        logger.info(f"Flag generation complete:")
-        logger.info(f"  - Total chips: {len(flags)}")
-        logger.info(f"  - SKIP (0): {(flags == 0).sum()} ({skip_rate:.2%})")
-        logger.info(f"  - TEST (1): {(flags == 1).sum()} ({1-skip_rate:.2%})")
-        
-        return results
-    
-    def generate_flags_with_details(self, data: pd.DataFrame,
-                                    chip_id_col: str = 'CHIP_ID') -> pd.DataFrame:
-        """
-        Generate flags with per-model breakdown
-        
-        Args:
-            data: DataFrame with chip IDs and test features
-            chip_id_col: Name of chip ID column
-        
-        Returns:
-            DataFrame with columns: [CHIP_ID, FLAG, CLASSIFIER, VAE, SIGMA]
-        """
-        logger.info(f"Generating detailed flags for {len(data)} chips...")
-        
-        chip_ids = data[chip_id_col].copy()
-        features = data.drop(columns=[chip_id_col])
-        
-        # Preprocess
-        features_scaled, _ = preprocess_pipeline(features, self.scaler, self.validator)
-        
-        # Get detailed predictions
-        predictions = self.ensemble.predict_with_details(features_scaled)
-        
-        # Create results DataFrame
-        results = pd.DataFrame({
-            chip_id_col: chip_ids,
-            'FLAG': predictions['ensemble'],
-            'CLASSIFIER': predictions.get('classifier', 0),
-            'VAE': predictions.get('vae', 0),
-            'SIGMA': predictions.get('sigma', 0)
-        })
-        
-        # Log per-model statistics
-        for model in ['CLASSIFIER', 'VAE', 'SIGMA']:
-            if model in results.columns:
-                flag_rate = results[model].mean()
-                logger.info(f"  - {model}: {flag_rate:.2%} flagged")
-        
-        return results
-    
-    def save_sortfile(self, flags_df: pd.DataFrame, filepath: str,
-                     chip_id_col: str = 'CHIP_ID', flag_col: str = 'FLAG'):
-        """
-        Save flags in SORTFILE format for test equipment
-        
-        Format: Each line is "CHIP_ID FLAG"
-        Example:
-            CHIP_00001 1
-            CHIP_00002 0
-            CHIP_00003 1
-        
-        Args:
-            flags_df: DataFrame with chip IDs and flags
-            filepath: Output file path
-            chip_id_col: Name of chip ID column
-            flag_col: Name of flag column
-        """
-        logger.info(f"Saving sortfile to {filepath}...")
-        
-        with open(filepath, 'w') as f:
-            for _, row in flags_df.iterrows():
-                f.write(f"{row[chip_id_col]} {row[flag_col]}\n")
-        
-        logger.info(f"Sortfile saved: {len(flags_df)} entries written")
-    
-    def calculate_savings(self, flags: np.ndarray, 
-                         test_time_per_chip: float = 30.0) -> Dict:
-        """
-        Calculate test time and cost savings
-        
-        Args:
-            flags: Binary flags array
-            test_time_per_chip: Test time per chip in minutes
-        
-        Returns:
-            Dictionary with savings metrics
-        """
-        n_total = len(flags)
-        n_skipped = (flags == 0).sum()
-        skip_rate = n_skipped / n_total
-        
-        time_saved_minutes = n_skipped * test_time_per_chip
-        time_saved_hours = time_saved_minutes / 60
-        
-        # Cost estimation (example: €100 per tester-hour)
-        cost_per_hour = 100
-        cost_saved = time_saved_hours * cost_per_hour
-        
         return {
-            'skip_rate': skip_rate,
-            'chips_skipped': n_skipped,
-            'chips_tested': n_total - n_skipped,
-            'time_saved_minutes': time_saved_minutes,
-            'time_saved_hours': time_saved_hours,
-            'time_reduction_percent': skip_rate * 100,
-            'estimated_cost_saved_eur': cost_saved
+            "total_chips": total,
+            "skip_count": skipped,
+            "run_count": total - skipped,
+            "skip_rate": skipped / total,
+            "simulated_time_reduction_percent": (
+                skipped / total * optional_fraction * 100
+            ),
+            "blocked_chips": int(predictions["lot_drift_blocked"].sum()),
+            "model_id": predictions["model_id"].iloc[0],
+            "bundle_id": predictions["bundle_id"].iloc[0],
+            "scope": "local policy output; not a production outcome",
         }
 
 
-def main():
-    """
-    Main execution function for CLI usage
-    
-    Example usage:
-        python generate_flags.py --input data.csv --output sortfile.txt
-    """
-    parser = argparse.ArgumentParser(description='Generate test skip flags')
-    parser.add_argument('--input', type=str, required=True,
-                       help='Input CSV file with test data')
-    parser.add_argument('--output', type=str, required=True,
-                       help='Output sortfile path')
-    parser.add_argument('--ensemble-path', type=str, default='models/ensemble.pth',
-                       help='Path to trained ensemble model')
-    parser.add_argument('--scaler-path', type=str, default='models/scaler.pkl',
-                       help='Path to fitted scaler')
-    parser.add_argument('--chip-id-col', type=str, default='CHIP_ID',
-                       help='Name of chip ID column')
-    parser.add_argument('--detailed', action='store_true',
-                       help='Include per-model breakdown in output')
-    
-    args = parser.parse_args()
-    
-    # Load models (placeholder - adjust based on your model loading)
-    logger.info("Loading models...")
-    # ensemble = HybridEnsemble.load(args.ensemble_path)
-    # scaler = FeatureScaler.load(args.scaler_path)
-    
-    logger.warning("⚠️  Model loading not implemented in example code")
-    logger.warning("Please implement model loading based on your setup")
-    
-    # Load data
-    logger.info(f"Loading data from {args.input}...")
-    data = pd.read_csv(args.input)
-    logger.info(f"Loaded {len(data)} chips with {len(data.columns)} features")
-    
-    # Generate flags (placeholder)
-    logger.info("Flag generation would happen here")
-    logger.info(f"Output would be saved to {args.output}")
-    
-    # Example of what the actual implementation would look like:
-    """
-    generator = FlagGenerator(ensemble, scaler)
-    
-    if args.detailed:
-        flags_df = generator.generate_flags_with_details(data, args.chip_id_col)
-    else:
-        flags_df = generator.generate_flags(data, args.chip_id_col)
-    
-    generator.save_sortfile(flags_df, args.output, args.chip_id_col)
-    
-    # Calculate and log savings
-    savings = generator.calculate_savings(flags_df['FLAG'].values)
-    logger.info(f"Time savings: {savings['time_saved_hours']:.1f} hours")
-    logger.info(f"Skip rate: {savings['skip_rate']:.2%}")
-    """
+def _read_input(path: Path) -> pd.DataFrame:
+    if path.suffix.lower() == ".csv":
+        return pd.read_csv(path)
+    if path.suffix.lower() == ".json":
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        records = payload.get("records") if isinstance(payload, dict) else payload
+        if not isinstance(records, list):
+            raise InputValidationError(
+                "JSON input must be a list or contain a records list"
+            )
+        return pd.DataFrame.from_records(records)
+    raise InputValidationError("Input must be a .csv or .json file")
+
+
+def _infer_output_format(path: Path, requested: str | None) -> str:
+    if requested:
+        return requested
+    suffix_formats = {".csv": "csv", ".json": "json", ".txt": "sortfile"}
+    try:
+        return suffix_formats[path.suffix.lower()]
+    except KeyError as error:
+        raise InputValidationError(
+            "Use --format when output is not .csv, .json, or .txt"
+        ) from error
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        description="Generate fail-closed chip test SKIP/RUN decisions"
+    )
+    parser.add_argument("--input", type=Path, required=True, help="Input CSV or JSON")
+    parser.add_argument("--output", type=Path, required=True, help="Output path")
+    parser.add_argument(
+        "--manifest",
+        type=Path,
+        default=DEFAULT_MANIFEST,
+        help="Frozen runtime manifest",
+    )
+    parser.add_argument("--format", choices=("csv", "json", "sortfile"))
+    parser.add_argument("--chip-id-col", default="chip_id")
+    parser.add_argument("--lot-id-col", default="lot_id")
+    return parser
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    try:
+        generator = FlagGenerator(args.manifest)
+        frame = _read_input(args.input)
+        predictions = generator.generate_flags(
+            frame,
+            chip_id_col=args.chip_id_col,
+            lot_id_col=args.lot_id_col,
+        )
+        generator.save_predictions(
+            predictions,
+            args.output,
+            _infer_output_format(args.output, args.format),
+        )
+    except (ArtifactIntegrityError, InputValidationError, OSError, ValueError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 2
+
+    print(json.dumps(generator.summary(predictions), indent=2))
+    return 0
 
 
 if __name__ == "__main__":
-    # For demonstration, create a simple example
-    print("=== Flag Generation Example ===\n")
-    
-    print("This script would:")
-    print("1. Load trained ensemble model and scaler")
-    print("2. Read production lot data (CSV with chip IDs + test measurements)")
-    print("3. Preprocess features")
-    print("4. Generate binary flags: 0=SKIP, 1=TEST")
-    print("5. Save sortfile for test equipment")
-    print("6. Calculate time/cost savings")
-    
-    print("\nExample output format (sortfile.txt):")
-    print("-" * 40)
-    print("CHIP_00001 1")
-    print("CHIP_00002 0")
-    print("CHIP_00003 0")
-    print("CHIP_00004 1")
-    print("...")
-    print("-" * 40)
-    
-    print("\nTo use in production:")
-    print("python generate_flags.py --input lot_M4287Z_P10.csv --output sortfile.txt")
+    raise SystemExit(main())

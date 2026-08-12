@@ -1,0 +1,299 @@
+{
+  "base_evaluation_sha256": "3d79b38a84b5ef485622ec124a68805482d413cbe0a3daed30e9ef5c832470a0",
+  "bundle_id": "53ce0e9ccbd63b3c84c581a0dedc325782e8c09b72847977626f41aa6ad3d1fe",
+  "canonical_prediction_sha256": "d5d50071d10de5bf0dfb531b843c49567a42cb170b595cc1b990f4c2a30661db",
+  "command": "python scripts/run_operational_envelope_confirmation.py",
+  "confirmation_id": "post_freeze_operational_envelope_v1",
+  "dataset": {
+    "base_seed": 20260807,
+    "feature_count": 32,
+    "feature_groups": {
+      "current": [
+        "I_00",
+        "I_01",
+        "I_02",
+        "I_03",
+        "I_04",
+        "I_05",
+        "I_06",
+        "I_07"
+      ],
+      "resistance": [
+        "R_00",
+        "R_01",
+        "R_02",
+        "R_03",
+        "R_04",
+        "R_05",
+        "R_06",
+        "R_07"
+      ],
+      "timing": [
+        "T_00",
+        "T_01",
+        "T_02",
+        "T_03",
+        "T_04",
+        "T_05",
+        "T_06",
+        "T_07"
+      ],
+      "voltage": [
+        "V_00",
+        "V_01",
+        "V_02",
+        "V_03",
+        "V_04",
+        "V_05",
+        "V_06",
+        "V_07"
+      ]
+    },
+    "generator_version": "public_grouped_synthetic_v1",
+    "isolation": {
+      "chip_overlap": 0,
+      "lot_overlap": 0,
+      "time_overlap": 0
+    },
+    "known_failure_modes": [
+      "voltage_drift",
+      "leakage_spike",
+      "timing_shift",
+      "resistance_bridge"
+    ],
+    "license": "MIT repository code; generated rows are not redistributed",
+    "ood_failure_mode": "novel_coupled_drift",
+    "provenance": "independently generated synthetic data; no external dataset",
+    "schema_version": 1,
+    "splits": {
+      "operational_envelope_confirmation": {
+        "fail_samples": 600,
+        "failure_mode_counts": {
+          "leakage_spike": 160,
+          "pass": 9400,
+          "resistance_bridge": 140,
+          "timing_shift": 140,
+          "voltage_drift": 160
+        },
+        "lot_count": 20,
+        "pass_samples": 9400,
+        "samples": 10000,
+        "sha256": "27a3cfaa412b05074cc6631cde07f305d5b1e320946af114ca1a176ccbb255f0",
+        "spec": {
+          "chips_per_lot": 500,
+          "fail_rate": 0.06,
+          "first_time_index": 220,
+          "lot_count": 20,
+          "name": "operational_envelope_confirmation",
+          "ood": false,
+          "phase_drift": 0.28
+        },
+        "time_index_max": 239,
+        "time_index_min": 220
+      }
+    }
+  },
+  "failure_modes": {
+    "leakage_spike": {
+      "captured": 158,
+      "escaped": 2,
+      "recall": 0.9875,
+      "support": 160
+    },
+    "resistance_bridge": {
+      "captured": 140,
+      "escaped": 0,
+      "recall": 1.0,
+      "support": 140
+    },
+    "timing_shift": {
+      "captured": 138,
+      "escaped": 2,
+      "recall": 0.9857142857142858,
+      "support": 140
+    },
+    "voltage_drift": {
+      "captured": 158,
+      "escaped": 2,
+      "recall": 0.9875,
+      "support": 160
+    }
+  },
+  "gate_result": {
+    "checks": {
+      "escape_uncertainty": true,
+      "observed_escapees": true,
+      "overtest": true,
+      "relative_escape_rate": true
+    },
+    "gates": {
+      "maximum_escape_rate_upper_95": 0.02,
+      "maximum_observed_escapees": 10,
+      "maximum_overtest_rate": 0.25,
+      "maximum_relative_escape_rate": 0.01
+    },
+    "passed": true
+  },
+  "lot_drift": {
+    "blocked_lots": 0,
+    "lots": {
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_220": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 12.024450487358047
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_221": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 11.625791239623835
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_222": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 12.717666399423035
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_223": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 10.915925061477301
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_224": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 11.811323925141858
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_225": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 10.948282629744325
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_226": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 9.21934339541284
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_227": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 9.652844368941592
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_228": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 10.759721284848442
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_229": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 12.149803499344923
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_230": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 12.182928423512333
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_231": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 10.597590165476474
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_232": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 11.734014907690835
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_233": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 11.848234182133865
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_234": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 11.464138514857613
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_235": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 12.070774266405316
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_236": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 10.2801213762855
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_237": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 10.528099201906997
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_238": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 10.41667044297807
+      },
+      "OPERATIONAL_ENVELOPE_CONFIRMATION_LOT_239": {
+        "chips": 500,
+        "drift_blocked": false,
+        "drift_reason": "within_development_envelope",
+        "drift_score": 12.788257067233582
+      }
+    },
+    "total_lots": 20
+  },
+  "metrics": {
+    "absolute_escape_rate": 0.0006,
+    "cost_model": {
+      "early_stage_units": 85.0,
+      "optional_stage_units": 15.0
+    },
+    "defect_recall": 0.99,
+    "escape_rate_upper_95": 0.01964133024229399,
+    "escapees": 6,
+    "f1": 0.75,
+    "failed_chips": 600,
+    "mcc": 0.7562706695296387,
+    "overtest": 390,
+    "overtest_rate": 0.04148936170212766,
+    "pass_chips": 9400,
+    "relative_escape_rate": 0.01,
+    "skip_rate": 0.9016,
+    "test_rate": 0.0984,
+    "time_reduction": 0.13524,
+    "time_reduction_ci_95_percent": [
+      13.434105373323945,
+      13.609268214306141
+    ],
+    "time_reduction_percent": 13.524,
+    "total_chips": 10000,
+    "true_skip": 9010,
+    "true_test": 594
+  },
+  "purpose": "Measure the exact frozen bundle on new chronological lots inside the declared development drift envelope; no model or threshold selection occurs",
+  "runtime_manifest_sha256": "7eda203201f9ce650c666ef64cef8e8ebd9f69a64e517a5bad1fa29e32972d29",
+  "schema_version": 1,
+  "selection_or_tuning_performed": false,
+  "targets": {
+    "observed_escapees": 0,
+    "test_time_reduction_percent": 15.0
+  }
+}
