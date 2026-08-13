@@ -78,12 +78,12 @@ docker compose up --build
 
 | Service | Local URL | Container behavior |
 |---|---|---|
-| API | `http://127.0.0.1:8005/docs` | Chainguard Python 3.12, non-root UID 65532, read-only root, dropped capabilities |
-| Dashboard | `http://127.0.0.1:8505` | Chainguard Python 3.12, non-root UID 65532, read-only root, dropped capabilities |
+| API | `http://127.0.0.1:8005/docs` | Digest-pinned Distroless runtime with CPython 3.12, non-root UID 65532, read-only root, dropped capabilities |
+| Dashboard | `http://127.0.0.1:8505` | Digest-pinned Distroless runtime with CPython 3.12, non-root UID 65532, read-only root, dropped capabilities |
 
 Both services receive a bounded writable `/tmp` filesystem. The API key is supplied at runtime and is never embedded in the image or repository.
 
-CI builds the Chainguard image, fails on high or critical Trivy findings, verifies UID 65532, and then runs authenticated API plus dashboard health smoke tests.
+CI builds the digest-pinned Distroless image, fails on high or critical Trivy findings, verifies UID 65532, and then runs authenticated API plus dashboard health smoke tests.
 
 ## Fail-Closed Rules
 
